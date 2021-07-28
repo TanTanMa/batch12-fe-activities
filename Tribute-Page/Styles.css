@@ -1,0 +1,90 @@
+#main {
+  background-image: url(https://eskipaper.com/images/hugh-jackman-background-1.jpg);
+  height: 100%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: center center;
+  width: 100%;
+}
+
+#tribute-link {
+  color: #ae793e;
+  text-decoration: none;
+  font-family: "EB Garamond", serif;
+  font-size: 20px;
+  border-style: solid;
+  border-color: #ae793e;
+  padding: 5px;
+  margin-top: 25px;
+  margin-left: 20%;
+  margin-bottom: 35px;
+  margin-right: 50%;
+}
+#tribute-link:hover {
+  color: ivory;
+  background-color: #ae793e;
+}
+#Title {
+  color: rgb(0, 0, 0);
+  font-family: "WindSong", cursive;
+  font-size: 65px;
+  margin-right: 50%;
+  text-shadow: 20px 10px 5px #ae793e;
+  text-align: center;
+}
+#tribute-info {
+  color: #6f737a;
+  font-family: "STIX Two Text", serif;
+  font-size: 20px;
+  text-align: center;
+  margin-left: 1%;
+  margin-right: 50%;
+  margin-bottom: 35px;
+}
+#img-caption {
+  color: #ae793e;
+  font-family: "MonteCarlo", cursive;
+  text-decoration: bold;
+  margin-left: 10%;
+  margin-right: 50%;
+  font-size: 25px;
+  word-spacing: 5px;
+}
+#img-div {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  flex-direction: column wrap;
+  margin-top: 25px;
+  margin-left: 10%;
+  margin-right: 50%;
+}
+#image {
+  opacity: 0.8;
+  max-width: 80px;
+  height: 80px;
+  margin-right: 15px;
+}
+#image:hover {
+  opacity: 1;
+}
+#image2 {
+  opacity: 0.8;
+  max-width: 150px;
+  height: 80px;
+  margin-right: 15px;
+}
+#image2:hover {
+  opacity: 1;
+}
+
+#image3 {
+  opacity: 0.8;
+  max-width: 160px;
+  height: 80px;
+  margin-right: 15px;
+}
+#image3:hover {
+  opacity: 1;
+}
