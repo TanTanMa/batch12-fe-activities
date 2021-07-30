@@ -1,6 +1,18 @@
-#main {
-  background-image: url(https://eskipaper.com/images/hugh-jackman-background-1.jpg);
-  height: 100%;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+
+.pg1 {
+  background-image: linear-gradient(
+      to left,
+      rgba(243, 243, 243, 0.3),
+      rgba(66, 66, 66, 0.3)
+    ),
+    url(https://eskipaper.com/images/hugh-jackman-background-1.jpg);
+  height: 700px;
   background-repeat: no-repeat;
   background-size: cover;
   background-attachment: fixed;
@@ -8,83 +20,160 @@
   width: 100%;
 }
 
-#tribute-link {
-  color: #ae793e;
-  text-decoration: none;
-  font-family: "EB Garamond", serif;
-  font-size: 20px;
-  border-style: solid;
-  border-color: #ae793e;
-  padding: 5px;
-  margin-top: 25px;
-  margin-left: 20%;
-  margin-bottom: 35px;
-  margin-right: 50%;
-}
-#tribute-link:hover {
-  color: ivory;
-  background-color: #ae793e;
+#top {
+  width: 58%;
 }
 #Title {
-  color: rgb(0, 0, 0);
+  color: #444;
   font-family: "WindSong", cursive;
   font-size: 65px;
-  margin-right: 50%;
   text-shadow: 20px 10px 5px #ae793e;
   text-align: center;
+  padding-left: 30px;
+  padding-top: 85px;
+  padding-bottom: 30px;
 }
 #tribute-info {
   color: #6f737a;
   font-family: "STIX Two Text", serif;
   font-size: 20px;
   text-align: center;
-  margin-left: 1%;
-  margin-right: 50%;
-  margin-bottom: 35px;
+  line-height: 150%;
+  padding-left: 30px;
+  padding-bottom: 25px;
 }
-#img-caption {
+h4 {
+  text-decoration: italic;
+}
+nav {
+  position: absolute;
+  top: var(--nav-spacing);
+  left: var(--nav-spacing);
+  background-color: transparent;
+  overflow: hidden;
+  margin-left:25px
+}
+#tribute-link {
+  float: left;
+  display: block;
+  color: #ae793e;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+  margin-left:15px;
+  margin-right: 15px;
+}
+#tribute-link:hover {
+  color: ivory;
+  background-color: rgb(174, 121, 62, 0.5);
+}
+.quote {
   color: #ae793e;
   font-family: "MonteCarlo", cursive;
-  text-decoration: bold;
-  margin-left: 10%;
-  margin-right: 50%;
+  text-align: center;
   font-size: 25px;
   word-spacing: 5px;
 }
-#img-div {
-  display: flex;
-  flex-wrap: wrap;
-  width: 100%;
-  flex-direction: column wrap;
-  margin-top: 25px;
+.img {
   margin-left: 10%;
-  margin-right: 50%;
-}
-#image {
-  opacity: 0.8;
-  max-width: 80px;
-  height: 80px;
-  margin-right: 15px;
-}
-#image:hover {
-  opacity: 1;
-}
-#image2 {
-  opacity: 0.8;
-  max-width: 150px;
-  height: 80px;
-  margin-right: 15px;
-}
-#image2:hover {
-  opacity: 1;
+  margin-right: auto;
 }
 
-#image3 {
-  opacity: 0.8;
-  max-width: 160px;
-  height: 80px;
-  margin-right: 15px;
+.content {
+  color: #292a39;
+  font-family: 'Gowun Dodum', sans-serif;
+  font-size: 20px;
+  text-align: center;
+  line-height: 150%;
+  width: 90%;
+  margin-left: 5%;
+  margin-bottom: 25px;
 }
-#image3:hover {
-  opacity: 1;
+
+.article-header {
+  font-family: 'Hahmlet', serif;
+  font-weight: 600;
+  font-size: 50px;
+  letter-spacing: 15px;
+  white-space: nowrap;
+  color: #444;
+  text-align: center;
+  border-top: solid #c06014;
+  border-bottom: solid #c06014;
+  margin-top: 25px;
+  margin-bottom: 25px;
+  padding: 0.25em 1em 0.2em 1em;
+  clip-path: polygon(0% 0%, 100% 0%, 75% 100%, 0% 100%);
 }
+.article-header:hover {
+  color: ivory;
+  background-color: rgb(174, 121, 62, 0.5);
+}
+
+h2 {
+  display: block;
+  color: #242424;
+  font-family: "STIX Two Text", serif;
+  text-align: center;
+  margin-bottom: 25px;
+}
+#img-div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-bottom: 25px;
+}
+figcaption {
+  display: block;
+  color: #6f737a;
+  font-family: "STIX Two Text", serif;
+}
+
+#decor {
+  background-image: url(https://mocah.org/thumbs/4545029-hugh-jackman-wolverine-marvel-comics.jpg);
+  height: 400px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: center center;
+  width: 100%;
+}
+.stats-container{
+  margin-top: 50px;
+  margin-bottom: 50px;
+  margin-left: 5%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  width: 85%;
+  font-family: 'Gowun Dodum', sans-serif;
+}
+.num{
+  font-weight: 30px;
+  font-size: 60px;
+  text-align:center;
+  color: #292a39;
+}
+
+.info{
+  font-weight: 30px;
+  font-size: 60px;
+  text-align:center;
+  color: #292a39;
+}
+
+.gallery-container {
+  margin-left: 5%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  width: 85%;
+}
+.gallery-container > img {
+  width: 300px;
+  margin: 10px 0;
+  height: 250px;
