@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta charset="UTF-8" />
-        <link href="Styles.css" rel="Stylesheet" />
+        <link href="./styles.css" rel="Stylesheet" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link href="https://fonts.googleapis.com/css2?family=Hahmlet:wght@700&family=Lato&family=Mukta&family=Poppins&display=swap" rel="stylesheet">
         <!-- <script src="functions.js"></script> -->
@@ -11,7 +11,7 @@
         <section class="header-container">
             <div id="dv-header">
                 <div id="header-left">
-                    <img src="imgs/hosp-logo.svg" id="logo">
+                    <img src="./imgs/hosp-logo.svg" id="logo">
                     <!-- <div id="branch-btn-cont">
                     <button class="branch-btn"> Select Branch </button>
                         <div class="branches-content">
@@ -43,7 +43,7 @@
                 </H1>
                 <p> Fill up the forms below to get started!</p>
                 </div>
-                <img src="/Forms-Page/imgs/Drawkit-Vector-Illustration-Medical-19.png" id="titlebg">
+                <img src="./imgs/Drawkit-Vector-Illustration-Medical-19.png" id="titlebg">
             </div>
         </section>
     <div class="bg">
@@ -102,18 +102,18 @@
               />
             </svg>
             </div>
-        <form id="survey-form" class="form open">
+        <form id="survey-form" class="form open" action="./action.html" method="get">
         <section class="personal-info-cont">
             <section class="private-info">
             <div id="private-info">
             <div class="form-controller column" id="name-cont">
             <label for="name" id="name-label" class="label"><b>Fullname:</b></label>
-            <input type="text" placeholder="e.g Angela Tan" name="name" id="name">
+            <input type="text" placeholder="e.g Angela Tan" name="name" id="name" required>
             <small>Name invalid.</small>
             </div>
             <div class="form-controller column" id="email-cont">
                 <label for="email" id="email-label" class="label"><b>Email:</b></label>
-                <input type="text" placeholder="e.g username@gmail.com" name="email" id="email">
+                <input type="text" placeholder="e.g username@gmail.com" name="email" id="email" required>
                 <small>Email invalid.</small>
             </div>
             <div class="column">
@@ -122,7 +122,7 @@
             </div>
             <div id="number-cont" class="form-controller">
                 <label for="number" id="number-label" class="label"><b>Contact Number:</b></label>
-                <input type="number" placeholder="e.g 09012345678" name="number" id="number" minlength="11" maxlength="13">
+                <input type="number" placeholder="e.g 09012345678" name="number" id="number" minlength="11" maxlength="13" required>
                 <small>Contact number invalid.</small>  
             </div>
             </div>
@@ -137,7 +137,7 @@
                 </div>
                     <div id="age">
                     <label for="Age" id="Age-label" class="label"><b>Age:</b></label>
-                    <input type="number" placeholder="Age" name="Age" id="Age">
+                    <input type="number" placeholder="Age" name="Age" id="Age" max="100" required>
                     </div>
             </div>
 
@@ -153,37 +153,37 @@
 
          <div class="column">
             <div class="row" id="checkbox-item">
-                <input type="checkbox" name="tools" value="Asthma">
+                <input type="checkbox" name="relatives" value="Asthma">
                 <label for="Asthma">Asthma</label>
             </div>
             <div class="row" id="checkbox-item">
-                <input type="checkbox" name="tools" value="Cardiac-disease">
+                <input type="checkbox" name="relatives" value="Cardiac-disease">
                 <label for="Cardiac-disease">Cardiac disease</label>
             </div>
         
             <div class="row" id="checkbox-item">
-                <input type="checkbox" name="tools" value="Diabetes">
+                <input type="checkbox" name="relatives" value="Diabetes">
                 <label for="Diabetes">Diabetes</label>
             </div>
             <div class="row" id="checkbox-item">
-                <input type="checkbox" name="tools" value="Hypertension">
+                <input type="checkbox" name="relatives" value="Hypertension">
                 <label for="Hypertension">Hypertension</label>
             </div></div>
             <div class="column">
             <div class="row" id="checkbox-item">
-                <input type="checkbox" name="tools" value="Psychiatric-Disorder">
+                <input type="checkbox" name="relatives" value="Psychiatric-Disorder">
                 <label for="Psychiatric-Disorder">Psychiatric disorder</label>
             </div>
             <div class="row" id="checkbox-item">
-                <input type="checkbox" name="tools" value="Tumor/Cancer">
+                <input type="checkbox" name="relatives" value="Tumor/Cancer">
                 <label for="Tumor/Cancer">Tumor/Cancer</label>
             </div>
             <div class="row" id="checkbox-item">
-                <input type="checkbox" name="tools" value="Epilepsy">
+                <input type="checkbox" name="relatives" value="Epilepsy">
                 <label for="Epilepsy">Epilepsy</label>
             </div>
             <div class="row" id="checkbox-item">
-                <input type="checkbox" name="tools" value="Stroke">
+                <input type="checkbox" name="relatives" value="Stroke">
                 <label for="Stroke">Stroke</label>
             </div></div>
         </div>
@@ -193,60 +193,60 @@
          <div id="tools-survey-container2" class="row">
          <div class="column">
             <div class="row" id="checkbox-item">
-                <input type="checkbox" name="tools" value="Chest-pain">
+                <input type="checkbox" name="symptoms" value="Chest-pain">
                 <label for="Chest-pain">
                     Chest pain</label>
             </div>
             <div class="row" id="checkbox-item">
-                <input type="checkbox" name="tools" value="Respiratory">
+                <input type="checkbox" name="symptoms" value="Respiratory">
                 <label for="Respiratory">
                     Respiratory</label>
             </div>
         
             <div class="row" id="checkbox-item">
-                <input type="checkbox" name="tools" value="Cardiac-disease">
+                <input type="checkbox" name="symptoms" value="Cardiac-disease">
                 <label for="Cardiac-disease">
                     Cardiac disease</label>
             </div>
             <div class="row" id="checkbox-item">
-                <input type="checkbox" name="tools" value="Cardiovascular">
+                <input type="checkbox" name="symptoms" value="Cardiovascular">
                 <label for="Cardiovascular">Cardiovascular</label>
             </div></div>
             <div class="column">
             <div class="row" id="checkbox-item">
-                <input type="checkbox" name="tools" value="Hematological">
+                <input type="checkbox" name="symptoms" value="Hematological">
                 <label for="Hematological">Hematological</label>
             </div>
             <div class="row" id="checkbox-item">
-                <input type="checkbox" name="tools" value="Lymohatic">
+                <input type="checkbox" name="symptoms" value="Lymohatic">
                 <label for="Lymphatic">
                     Lymphatic</label>
             </div>
             <div class="row" id="checkbox-item">
-                <input type="checkbox" name="tools" value="Neurological">
+                <input type="checkbox" name="symptoms" value="Neurological">
                 <label for="Neurological">
                     Neurological</label>
             </div>
             <div class="row" id="checkbox-item">
-                <input type="checkbox" name="tools" value="Psychiatric">
+                <input type="checkbox" name="symptoms" value="Psychiatric">
                 <label for="Psychiatric">
                     Psychiatric</label>
             </div></div>
             <div class="column">
                 <div class="row" id="checkbox-item">
-                    <input type="checkbox" name="tools" value="Gastrointestinal">
+                    <input type="checkbox" name="symptoms" value="Gastrointestinal">
                     <label for="Gastrointestinal">Gastrointestinal</label>
                 </div>
                 <div class="row" id="checkbox-item">
-                    <input type="checkbox" name="tools" value="Genitourinary">
+                    <input type="checkbox" name="symptoms" value="Genitourinary">
                     <label for="Genitourinary">Genitourinary</label>
                 </div>
                 <div class="row" id="checkbox-item">
-                    <input type="checkbox" name="tools" value="Apnea">
+                    <input type="checkbox" name="symptoms" value="Apnea">
                     <label for="Apnea">Apnea</label>
                 </div>
                 <div class="row" id="checkbox-item">
-                    <input type="checkbox" name="tools" value="Musculoskeletal">
+                    <input type="checkbox" name="symptoms" value="Musculoskeletal">
                     <label for="Musculoskeletal"> Musculoskeletal</label>
                 </div></div>
         </div>
@@ -254,73 +254,73 @@
 
         <section id="radio-survey-container">
             <div  class="radio-set-1">
-            <div id="radio-survey-items">
+            <div id="radio-survey-items1">
                 <div id="element">
                     <p><b>How often do you consume alcohol?</b></p>
                 </div>
                 <div id="react" class="row">
                 <div class="column">
                 <div class="row" id="radio-item" >
-                <input type="radio" name="stars" value="Daily" >
+                <input type="radio" name="Alcohol" value="Daily" >
                 <label for="Daily" >Daily</label>
                 </div>
             
                 <div class="row"id="radio-item">
-                <input type="radio" name="stars" value="Weekly">
+                <input type="radio" name="Alcohol" value="Weekly">
                 <label for="Weekly" >Weekly</label>
                 </div>
                 </div>
 
                 <div class="column">
                     <div class="row"id="radio-item">
-                <input type="radio" name="stars" value="Occasionally">
+                <input type="radio" name="Alcohol" value="Occasionally">
                 <label for="Occasionally" >Occasionally</label>
                         </div>
                     <div class="row"id="radio-item">
-                <input type="radio" name="stars" value="Monthly">
+                <input type="radio" name="Alcohol" value="Monthly">
                 <label for="Monthly" >Monthly</label>
                     </div></div>
 
                 <div class="column">
                     <div class="row"id="radio-item">
-                <input type="radio" name="stars" value="Never">
+                <input type="radio" name="Alcohol" value="Never">
                 <label for="Never" >Never</label>
                 </div>
                 </div>
                 </div>
                 </div>
 
-            <div id="radio-survey-items">
+            <div id="radio-survey-items2">
                 <div id="element">
                     <p><b>How often do you consume tobacco?</b></p>
                 </div>
                 <div id="react" class="row">
                 <div class="column">
                 <div class="row"id="radio-item">
-                <input type="radio" name="stars" value="Daily">
+                <input type="radio" name="Tobacco" value="Daily">
                 <label for="Daily" >Daily</label>
                 </div>
             
                 <div class="row"id="radio-item">
-                <input type="radio" name="stars" value="Weekly">
+                <input type="radio" name="Tobacco" value="Weekly">
                 <label for="Weekly" >Weekly</label>
                 </div>
                 </div>
                 
                 <div class="column">
                     <div class="row"id="radio-item">
-                <input type="radio" name="stars" value="Occasionally">
+                <input type="radio" name="Tobacco" value="Occasionally">
                 <label for="Occasionally" >Occasionally</label>
                         </div>
                     <div class="row"id="radio-item">
-                <input type="radio" name="stars" value="Monthly">
+                <input type="radio" name="Tobacco" value="Monthly">
                 <label for="Monthly" >Monthly</label>
                     </div></div>
 
                 <div class="column">
 
                     <div class="row"id="radio-item">
-                <input type="radio" name="stars" value="Never">
+                <input type="radio" name="Tobacco" value="Never">
                 <label for="Never" >Never</label>
                 </div>
                 </div>
@@ -334,12 +334,12 @@
                 </div>
                 <div id="react" class="row">
                 <div class="row"id="radio-item">
-                <input type="radio" name="stars" value="Yes" >
+                <input type="radio" name="Allergies" value="Yes" >
                 <label for="Yes" >Yes</label>
                 </div>
             
                 <div class="row"id="radio-item">
-                <input type="radio" name="stars" value="No">
+                <input type="radio" name="Allergies" value="No">
                 <label for="No" >No</label>
                 </div>
                 </div>
@@ -352,12 +352,12 @@
                 <div class="radio-items-cont">
                 <div id="react" class="row">
                 <div class="row"id="radio-item">
-                <input type="radio" name="stars" value="Yes" >
+                <input type="radio" name="medication" value="Yes" >
                 <label for="Yes" >Yes</label>
                 </div>
             
                 <div class="row"id="radio-item">
-                <input type="radio" name="stars" value="No">
+                <input type="radio" name="medication" value="No">
                 <label for="No" >No</label>
                 </div>
                 </div>
@@ -375,10 +375,9 @@
 
     </div>
     <div id="submit-container">
-    <button class="submit-btn">Submit</button>
+        <button type="button" class="submit-btn">Submit</button>
     </div>
         </section>
-
         </section>
         </form>
         </section>
@@ -390,7 +389,6 @@
         Set the schedule
     </H2>
     <p class="description">
-
         We will get back to you for more updates.
     </p>
     </div>
