@@ -1,0 +1,49 @@
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  padding: 0;
+}
+h1 {
+  text-align: center;
+}
+.chess-board {
+  position: relative;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  margin: auto;
+  border: 2px solid black;
+  box-sizing: content-box;
+  display: flex;
+  flex-direction: column;
+  height: 50vw;
+  margin: 0 auto;
+  width: 50vw;
+}
+
+.place-box {
+  border: 1px solid rgb(39, 39, 39);
+  margin: -2px;
+  justify-content: center;
+  display: flex;
+  align-items: center;
+}
+.light-box {
+  flex: 1;
+  background-color: rgb(105, 199, 92);
+}
+.dark-box {
+  background-color: #0e0e0e83;
+  flex: 1;
+}
+.row {
+  display: flex;
+  flex: 1;
+  flex-direction: row;
+}
+.white-piece {
+  color: aliceblue;
+}
