@@ -18,12 +18,12 @@ body {
 .bg {
   display: flex;
   flex-direction: column;
-  background-color: #efee9de1;
+  background-color: #FFF;
   padding-top: 25px;
   padding-bottom: 15px;
 }
 .main-title-cont {
-  background-color: #efee9d;
+  background-color: #FFF;
   width: 100%;
   height: 550px;
   position: relative;
@@ -46,12 +46,12 @@ body {
   display: block;
   position: static;
   width: 100%;
-  background: rgb(209, 234, 163);
-  background: linear-gradient(
+  background: #FFF;
+  /* background: linear-gradient(
     180deg,
     rgba(209, 234, 163, 1) 78%,
     rgba(239, 238, 157, 1) 100%
-  );
+  ); */
 }
 .menu-btn {
   border-radius: 4px;
@@ -101,12 +101,17 @@ body {
   justify-content: center;
   align-items: center;
 }
+.form-container {
+  border-radius: 5px;
+  border: 1px solid #CCC;
+  margin: 0 12%;
+  box-shadow: 5px 10px #DDD;
+}
 .personal-info-cont {
   flex: 1 1 auto;
   flex-grow: 1;
   flex-shrink: 1;
   flex-basis: auto;
-  background: #cef7fcf3;
   border-radius: 0px 0px 15px 15px;
   position: relative;
   width: 100%;
@@ -156,10 +161,8 @@ p {
   stroke: #087f5b;
 }
 .subject-form.open {
-  border-top: 4px solid #087f5b;
-  background-color: #cef7fcf3;
-  border-radius: 15px 15px 0px 0px;
-  padding: 0;
+  background-color: #FFF;
+  padding: 10px;
   margin: 0;
   box-shadow: none;
 }
@@ -188,6 +191,7 @@ textarea {
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
+  margin-top: 15px;
 }
 .subject-form {
   display: flex;
@@ -196,11 +200,8 @@ textarea {
   justify-content: space-between;
   align-items: baseline;
   padding: 10px;
-  border-radius: 5px;
-  margin: 15px;
-  background-color: #abc2e8;
+  background-color: #FFF;
   color: rgb(56, 56, 56);
-  box-shadow: 5px 10px #087f5b88;
 }
 .subject-num {
   font-size: 30px;
@@ -213,12 +214,12 @@ textarea {
   z-index: 2;
   margin-top: 4%;
   margin-left: 3%;
-  background-color: #efee9d85;
+  background-color: #FFF;
 }
 H1 {
   font-size: 45px;
   text-align: center;
-  color: #59dd1b;
+  color: #000;
 }
 .main-title-bg p {
   font-size: 25px;
@@ -244,9 +245,6 @@ H1 {
   flex-shrink: 1;
   flex-basis: auto;
   position: relative;
-  margin-left: 12%;
-  margin-right: 12%;
-  box-sizing: border-box;
 }
 
 #dv-header {
@@ -303,43 +301,35 @@ H1 {
 #number-label {
   margin-top: 15px;
 }
-#checkbox-item,
-#radio-item {
+.checkbox-item,
+.radio-item {
   font-family: "Poppins", sans-serif;
   display: flex;
   align-items: baseline;
-}
-#radio-item {
-  margin: 3px;
-}
-#checkbox-item {
   padding: 5px;
 }
 
-#radio-survey-items1,
-#radio-survey-items2 {
-  display: flex;
-  flex-direction: column;
+.checkbox-item > label, .radio-item > label {
+  font-size: 15px;
+  margin-left: 5px;
 }
 
-.radio-set-1,
-.radio-set-2 {
+.radio-survey-items{
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: baseline;
-  flex-wrap: wrap;
+  flex-direction: column;
+  width: 50%;
+  margin-top: 15px;
 }
+
 a {
   text-decoration: none;
 }
-.radio-set-1 {
-  width: 75%;
+.radio-set-1,
+.radio-set-2 {
+  width: 100%;
+  display: flex;
 }
 
-.radio-set-2 {
-  width: 79%;
-}
 #react {
   max-width: 50%;
   display: flex;
@@ -348,23 +338,20 @@ a {
 }
 #number {
   width: 100%;
-  padding: 5px;
-  margin: 5px 0 5px 0;
   border-top-style: hidden;
   border-right-style: hidden;
   border-left-style: hidden;
   border-bottom: 1px solid #0a0a0a;
 }
 
-#name-cont,
-#email-cont,
-#number-cont {
+.form-controller {
   margin: 5px 0 10px 0;
 }
 #submit-container {
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-top: 15px;
 }
 .submit-btn {
   padding: 10px 15px;
@@ -374,19 +361,17 @@ a {
   outline: none;
   color: #fff;
   background-color: #04aa6d;
-  border: none;
+  border: 1px solid #04aa6d;
   border-radius: 15px;
-  box-shadow: 2px 4px rgb(162, 252, 120);
 }
 
 .submit-btn:hover {
-  background-color: #3e8e41;
+  background-color: #FFF;
+  color: #04aa6d;
 }
 
 .submit-btn:active {
   background-color: #3e8e41;
-  box-shadow: 2px 4px #666;
-  transform: translateY(4px);
 }
 .form-controller.success input[type="text"],
 .form-controller.success input[type="email"],
@@ -409,25 +394,23 @@ input[type="number"],
 input[type="email"],
 #dropdown,
 #comments {
-  padding: 5px;
+  padding: 10px;
   margin-top: 5px;
   margin-bottom: 5px;
   border-top-style: hidden;
   border-right-style: hidden;
   border-left-style: hidden;
   border-bottom: 1px solid #0a0a0a;
-  background-color: #a8dda8;
+  animation: fadeinout ease 0.5s;
+  font-family: "Poppins", sans-serif;
 }
 input[type="text"]:focus,
 input[type="email"]:focus,
 input[type="number"]:focus {
-  border: 3px solid #555;
+  border: 0;
+  border-bottom: 3px solid #555;
 }
 
-label {
-  padding-left: 2px;
-  font-size: 15px;
-}
 small {
   visibility: hidden;
   font-family: "Poppins", sans-serif;
@@ -441,7 +424,7 @@ footer {
   justify-content: center;
   width: auto;
   height: 100px;
-  background-color: #6f82a1;
+  background-color: #FFF;
 }
 @media only screen and (max-width: 600px) {
   #survey-form,
