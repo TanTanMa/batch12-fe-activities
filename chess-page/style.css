@@ -19,14 +19,16 @@ h1 {
   box-sizing: content-box;
   display: flex;
   flex-direction: column;
-  height: 50vw;
+  height: 500px;
   margin: 0 auto;
-  width: 50vw;
+  width: 500px;
 }
 
 .place-box {
   border: 1px solid rgb(39, 39, 39);
   margin: -2px;
+  height: 101%;
+  width: 101%;
   justify-content: center;
   display: flex;
   align-items: center;
