@@ -4,17 +4,12 @@
 body {
   margin: 0;
   padding: 0;
+  background: linear-gradient(#b1b1b1, white);
+  background-repeat: no-repeat;
 }
 
 h1,
 .chess-board {
-  position: relative;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  margin: auto;
-  /* border: 5px solid black; */
   box-sizing: content-box;
   display: flex;
   flex-direction: column;
@@ -26,7 +21,7 @@ h1,
 }
 
 .place-box {
-  border: 1px solid rgb(39, 39, 39);
+  /* border: 1px solid rgb(39, 39, 39); */
   margin: -2px;
   min-width: 5vw;
   min-height: 5vw;
@@ -38,10 +33,10 @@ h1,
 }
 .light-box {
   flex: 1;
-  background-color: rgb(105, 199, 92);
+  background-color: rgba(23, 196, 0, 0.692);
 }
 .dark-box {
-  background-color: #0e0e0e83;
+  background-color: #0e0e0ebe;
   flex: 1;
 }
 .row {
@@ -52,7 +47,7 @@ h1,
   width: 3.5rem;
 }
 .white-piece {
-  color: aliceblue;
+  color: rgb(242, 240, 255);
 }
 p {
   font-size: 3vw;
