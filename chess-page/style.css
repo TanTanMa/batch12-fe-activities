@@ -5,9 +5,8 @@ body {
   margin: 0;
   padding: 0;
 }
-h1 {
-  text-align: center;
-}
+
+h1,
 .chess-board {
   position: relative;
   top: 0;
@@ -15,20 +14,24 @@ h1 {
   bottom: 0;
   left: 0;
   margin: auto;
-  border: 2px solid black;
+  /* border: 5px solid black; */
   box-sizing: content-box;
   display: flex;
   flex-direction: column;
-  height: 500px;
+  min-width: 4vw;
+  min-height: 4vw;
+  max-height: 500px;
   margin: 0 auto;
-  width: 500px;
+  max-width: 500px;
 }
 
 .place-box {
   border: 1px solid rgb(39, 39, 39);
   margin: -2px;
-  height: 101%;
-  width: 101%;
+  min-width: 5vw;
+  min-height: 5vw;
+  max-height: 101%;
+  max-width: 101%;
   justify-content: center;
   display: flex;
   align-items: center;
@@ -45,7 +48,13 @@ h1 {
   display: flex;
   flex: 1;
   flex-direction: row;
+  height: 3.5rem;
+  width: 3.5rem;
 }
 .white-piece {
   color: aliceblue;
+}
+p {
+  font-size: 3vw;
+  margin: 0;
 }
