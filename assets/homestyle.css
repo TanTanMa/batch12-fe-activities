@@ -1,0 +1,10 @@
+body {
+  background-image: url("./N7.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+h1,
+h4,
+a {
+  color: rgb(253, 252, 252);
+}
