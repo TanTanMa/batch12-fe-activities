@@ -1,0 +1,158 @@
+* {
+  margin: 0;
+}
+.banner {
+  position: relative;
+  background-image: url(./assets/topbg1.png);
+  background-size: 100% auto;
+  height: 45vw;
+  width: auto;
+  z-index: -1;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+}
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 80px;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0px;
+  width: 100%;
+  background: rgb(255, 255, 255);
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 1) 88%,
+    rgba(239, 238, 157, 0) 100%
+  );
+}
+#header-img {
+  height: 80px;
+  width: 80px;
+}
+.icon {
+  height: 29px;
+  width: 29px;
+}
+.right-header {
+  display: flex;
+  justify-content: space-around;
+  margin-right: 15px;
+}
+.nav-link,
+.icon {
+  margin-right: 15px;
+}
+.nav-link {
+  text-decoration: none;
+  color: rgb(0, 0, 0);
+  font-family: "Open Sans", sans-serif;
+  font-size: 25px;
+}
+.left-header {
+  display: flex;
+  justify-content: space-around;
+  margin-left: 15px;
+  align-items: center;
+}
+.green-section {
+  background-color: #ecf5f9;
+  padding: 30px;
+}
+.vid-caption-container {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.video-caption {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  width: 50%;
+}
+.items-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: stretch;
+  margin-top: 3.5rem;
+  margin-bottom: 3.5rem;
+}
+.items {
+  display: flex;
+  height: 18rem;
+  width: 18rem;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  border-radius: 5px;
+  margin: 2rem;
+  box-shadow: 9px 9px 23px 3px rgba(0, 100, 0, 0.53);
+  -webkit-box-shadow: 9px 9px 23px 3px rgba(0, 100, 0, 0.53);
+  -moz-box-shadow: 9px 9px 23px 3px rgba(0, 100, 0, 0.53);
+}
+.items img {
+  height: 15rem;
+  width: 15rem;
+}
+.items:hover img {
+  transform: rotate(0) scale(2) translateZ(0);
+  -webkit-filter: drop-shadow(0 20px 20px rgba(0, 0, 0, 0.7));
+  filter: drop-shadow(0 20px 20px rgba(0, 0, 0, 0.7));
+}
+.decor {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: darkgrey;
+}
+h2 {
+  color: #484848;
+  font-size: 50px;
+  font-weight: bold;
+  font-family: monospace;
+  letter-spacing: 7px;
+  cursor: pointer;
+}
+h2 span {
+  transition: 3s linear;
+}
+h2:hover span:nth-child(1) {
+  margin-right: 5px;
+}
+h2:hover span:nth-child(1):after {
+  content: "BSESSIVE   ";
+}
+h2:hover span:nth-child(2):after {
+  content: "ACTUS    ";
+}
+h2:hover span:nth-child(3):after {
+  content: "ISORDER";
+}
+h2:hover span:nth-child(3) {
+  margin-left: 30px;
+}
+h2:hover span {
+  color: #fff;
+  text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 40px #fff;
+}
+.footer {
+  background-color: #262322;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.footer-links a {
+  text-decoration: none;
+  color: #ecf5f9;
+}
+.footer-links a:hover {
+  color: #484848;
+}
+.column {
+  display: flex;
+  flex-direction: column;
+}
