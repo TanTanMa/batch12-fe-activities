@@ -428,12 +428,14 @@ hr {
   .vid-caption-container {
     flex-direction: column;
     align-items: stretch;
+    padding: 1rem;
   }
   .video-container {
     align-self: center;
   }
   .video-caption p {
     text-align: justify;
+    font-size: calc(19px + (26 - 19) * ((100vw - 300px) / (1600 - 300)));
   }
   .video-caption {
     width: fit-content;
@@ -475,5 +477,20 @@ hr {
   .cert-logo {
     width: calc(100px + (200 - 100) * ((100vw - 300px) / (1600 - 300)));
     height: calc(100px + (200 - 100) * ((100vw - 300px) / (1600 - 300)));
+  }
+  .video-caption H3 {
+    font-size: calc(36px + (35 - 36) * ((100vw - 300px) / (1600 - 300)));
+  }
+  .video-caption h4 {
+    font-size: calc(26px + (35 - 26) * ((100vw - 300px) / (1600 - 300)));
+    color: grey;
+  }
+  .Rev-cell {
+    font-size: calc(15px + (26 - 15) * ((100vw - 300px) / (1600 - 300)));
+  }
+  .footer {
+    padding-left: 1rem;
+    padding-right: 1rem;
+    padding-bottom: 1rem;
   }
 }
