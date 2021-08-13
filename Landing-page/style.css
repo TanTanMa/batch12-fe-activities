@@ -36,7 +36,7 @@
 .logo {
   display: flex;
   width: 20px;
-  font-size: 20px;
+  font-size: 26px;
   font-family: "Montserrat", sans-serif;
 }
 .cs {
@@ -78,7 +78,7 @@
 .banner-tag p {
   color: #423c52;
   text-align: center;
-  text-shadow: 4px 2px 3px #b59b00;
+  text-shadow: 4px 2px 3px #bddd30;
 }
 
 a {
@@ -251,7 +251,7 @@ h2 {
   display: flex;
   flex-direction: column;
   font-family: "Hahmlet", serif;
-  font-size: 25px;
+  font-size: 2.8rem;
 }
 .banner-decor {
   width: 100%;
@@ -408,7 +408,7 @@ hr {
   justify-content: space-between;
 }
 .burger {
-  visibility: hidden;
+  display: none;
   color: black;
   height: 2rem;
   width: 2rem;
@@ -453,7 +453,7 @@ hr {
     flex-direction: column;
   }
   hr {
-    visibility: hidden;
+    /* visibility: hidden; */
     margin-left: 0;
     margin-right: 0;
   }
@@ -463,6 +463,17 @@ hr {
     margin-bottom: 30px;
   }
   .burger {
-    visibility: visible;
+    display: block;
+  }
+  .banner-tag {
+    font-size: calc(19px + (26 - 19) * ((100vw - 300px) / (1600 - 300)));
+  }
+  #header-img {
+    width: calc(150px + (250 - 150) * ((100vw - 300px) / (1600 - 300)));
+    height: calc(100px + (200 - 100) * ((100vw - 300px) / (1600 - 300)));
+  }
+  .cert-logo {
+    width: calc(100px + (200 - 100) * ((100vw - 300px) / (1600 - 300)));
+    height: calc(100px + (200 - 100) * ((100vw - 300px) / (1600 - 300)));
   }
 }
