@@ -8,7 +8,6 @@
   background-image: url(./assets/bg2.svg);
   background-size: 100% auto;
   height: 50vw;
-  width: auto;
   background-attachment: fixed;
   background-repeat: no-repeat;
   display: flex;
@@ -55,8 +54,7 @@
   justify-content: space-around;
   margin-right: 15px;
 }
-.nav-link,
-.icon {
+.nav-link {
   margin-right: 15px;
 }
 .nav-link {
@@ -65,22 +63,31 @@
 
   font-size: 25px;
 }
-.logo-tag-container {
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  align-items: center;
+.logo {
+  display: none;
 }
 #header-img {
-  height: 200px;
-  width: 250px;
+  padding-top: 3px;
+  height: 3rem;
+  width: 4rem;
 }
 .banner-tag p {
-  color: #423c52;
-  text-align: center;
+  color: #1d1c1d;
+  text-align: left;
   text-shadow: 4px 2px 3px #bddd30;
 }
-
+.event-header {
+  background-color: black;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  width: 100%;
+  text-align: center;
+  color: white;
+  font-family: "Open Sans", sans-serif;
+}
+.announcement {
+  margin-left: -37px;
+}
 a {
   text-decoration: none;
 }
@@ -107,10 +114,11 @@ H1 {
   display: flex;
   justify-content: space-around;
   align-items: space-around;
+  width: 100%;
 }
 .cert-logo {
-  height: 10rem;
-  width: 10rem;
+  height: 8rem;
+  width: 8rem;
 }
 .cert-logo:hover {
   transform: rotate(0) scale(1.8) translateZ(0);
@@ -152,7 +160,6 @@ H1 {
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  margin: 2rem;
 }
 .items-title {
   font-size: 45px;
@@ -177,7 +184,7 @@ H1 {
   border: 1px solid black;
   border-radius: 5px;
   margin: 1rem;
-  background-color: white;
+  background-color: #d9dbdf;
   box-shadow: 8px 9px 5px 0px rgba(54, 54, 54, 0.75);
   -webkit-box-shadow: 8px 9px 5px 0px rgba(54, 54, 54, 0.75);
   -moz-box-shadow: 8px 9px 5px 0px rgba(54, 54, 54, 0.75);
@@ -199,7 +206,7 @@ H1 {
   padding-top: 15px;
   background: rgb(255, 255, 255);
   margin-bottom: 55px;
-  height: 26rem;
+  height: fit-content;
 }
 .Rev-cell {
   display: flex;
@@ -213,14 +220,14 @@ H1 {
   font-size: 1rem;
 }
 .carousel-cell {
-  width: 66%;
+  width: 60%;
   height: auto;
   margin-right: 5px;
   border-radius: 10px;
 }
 
 .carousel-cell img {
-  width: 66%;
+  width: 60%;
   height: auto;
   max-height: 418px;
 }
@@ -247,11 +254,12 @@ h2 {
   padding-bottom: 15px;
 }
 .banner-tag {
-  width: 100%;
+  width: 50%;
   display: flex;
   flex-direction: column;
   font-family: "Hahmlet", serif;
-  font-size: 2.8rem;
+  font-size: 2rem;
+  padding: 15px;
 }
 .banner-decor {
   width: 100%;
@@ -289,12 +297,32 @@ h2 {
   font-family: "Georama", sans-serif;
   text-decoration: bold;
 }
+.toplayer {
+  background-image: url(./assets/annie-spratt-ncQ2sguVlgo-unsplash.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  box-shadow: 200px 200px 377px 200px rgba(236, 245, 249, 0.9) inset;
+  -webkit-box-shadow: 200px 200px 377px 200px rgba(236, 245, 249, 0.9) inset;
+  -moz-box-shadow: 200px 200px 377px 200px rgba(236, 245, 249, 0.9) inset;
+}
 .footer {
   background-color: #262322;
   display: flex;
   justify-content: space-around;
   padding: 100px;
   clip-path: polygon(0 0, 100% 13%, 100% 100%, 0% 100%);
+}
+.follow {
+  text-align: end;
+  margin-right: 15px;
+  font-family: "Georama", sans-serif;
+  color: black;
+  font-size: 2rem;
+  margin-bottom: -15px;
+}
+.follow a {
+  color: black;
+  text-decoration: underline;
 }
 .footer-layer1 {
   display: flex;
@@ -344,11 +372,15 @@ h2 {
   display: flex;
   flex-direction: column;
 }
-
+.lower-layer-container {
+  height: fit-content;
+  width: 100%;
+}
 .readmore {
   border-radius: 4px;
   background-color: inherit;
   border: none;
+  border: 1px solid black;
   color: #535353;
   text-align: center;
   font-size: 15px;
@@ -410,8 +442,6 @@ hr {
 .burger {
   display: none;
   color: black;
-  height: 2rem;
-  width: 2rem;
 }
 
 @media screen and (max-width: 800px) {
@@ -469,15 +499,19 @@ hr {
   }
   .banner-tag {
     font-size: calc(19px + (26 - 19) * ((100vw - 300px) / (1600 - 300)));
+    width: 100%;
   }
-  #header-img {
-    width: calc(150px + (250 - 150) * ((100vw - 300px) / (1600 - 300)));
-    height: calc(100px + (200 - 100) * ((100vw - 300px) / (1600 - 300)));
+  .follow {
+    font-size: calc(19px + (26 - 19) * ((100vw - 300px) / (1600 - 300)));
+  }
+  .banner-tag p {
+    text-align: center;
   }
   .cert-logo {
-    width: calc(100px + (200 - 100) * ((100vw - 300px) / (1600 - 300)));
-    height: calc(100px + (200 - 100) * ((100vw - 300px) / (1600 - 300)));
+    width: calc(50px + (128 - 50) * ((100vw - 300px) / (1600 - 300)));
+    height: calc(50px + (128 - 50) * ((100vw - 300px) / (1600 - 300)));
   }
+
   .video-caption H3 {
     font-size: calc(36px + (35 - 36) * ((100vw - 300px) / (1600 - 300)));
   }
@@ -487,10 +521,25 @@ hr {
   }
   .Rev-cell {
     font-size: calc(15px + (26 - 15) * ((100vw - 300px) / (1600 - 300)));
+    width: 100%;
   }
   .footer {
     padding-left: 1rem;
     padding-right: 1rem;
     padding-bottom: 1rem;
+  }
+  .carousel-cell {
+    width: 100%;
+    height: 100%;
+  }
+  .carousel-cell img {
+    width: 100%;
+    height: 100%;
+  }
+  .logo {
+    display: flex;
+  }
+  .cslogo {
+    display: none;
   }
 }
