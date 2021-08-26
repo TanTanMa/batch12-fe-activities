@@ -77,7 +77,7 @@
   text-shadow: 4px 2px 3px #bddd30;
 }
 .event-header {
-  background-color: black;
+  background-color: #0a0a0a;
   padding-top: 5px;
   padding-bottom: 5px;
   width: 100%;
@@ -86,14 +86,15 @@
   font-family: "Open Sans", sans-serif;
 }
 .announcement {
+  font-size: 2rem;
   margin-left: -37px;
+  color: #fbff00;
 }
 a {
   text-decoration: none;
 }
 .product-name,
 .nav-link,
-.slide-title,
 .sub-title,
 H3,
 h4,
@@ -173,6 +174,7 @@ H1 {
 }
 
 .slide-title {
+  font-family: "Alumni Sans", sans-serif;
   margin-top: 15px;
   font-size: 1.8rem;
   text-decoration: bold;
