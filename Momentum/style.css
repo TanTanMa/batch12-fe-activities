@@ -1,0 +1,160 @@
+* {
+  margin: 0;
+}
+
+body {
+  background-image: url(./assets/daniele-colucci-jIrN_E4EZf0-unsplash-min.jpg);
+  background-size: cover;
+  height: 95vh;
+  width: 100%;
+  background-repeat: no-repeat;
+  font-family: "Karla", sans-serif;
+}
+
+.Top-container {
+  display: flex;
+  justify-content: space-between;
+  margin: 15px;
+}
+#date {
+  font-size: 1.5rem;
+}
+
+#toDoToggle {
+  display: block; /*toggle on click*/
+  background: transparent;
+  border: none;
+  font-size: 1.5rem;
+  color: white;
+  cursor: pointer;
+}
+.mid-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#time {
+  font-size: 12rem;
+  font-family: "Source Code Pro", monospace;
+  cursor: pointer;
+  margin-bottom: -35px;
+}
+.qoute-container {
+  display: none; /*toggle flex*/
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.qoute-container p {
+  font-size: 1.2rem;
+}
+.quote-option-container {
+  display: none; /*toggle on hover flex*/
+  flex-direction: row;
+}
+.quote-option-container div {
+  margin: 15px;
+  cursor: pointer;
+}
+
+.name-focus-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.ToDoWindow {
+  position: absolute;
+  display: none; /*toggle flex*/
+  top: 1rem;
+  right: 2rem;
+  border-radius: 5px;
+  max-height: 90vh;
+  overflow-y: auto;
+  color: wheat;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: cornsilk;
+}
+.ToDoWindow form {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: flex-end;
+  margin: 0 0 5px;
+}
+.ToDoWindow input {
+  border: none;
+  background: transparent;
+  border-bottom: 2px solid black;
+}
+.btn-create,
+.delete-buttons button,
+.name-form button,
+.focus-container button {
+  border: none;
+  background: transparent;
+  cursor: pointer;
+}
+.task-todo-container {
+  display: flex;
+}
+.all-task,
+.todo-list,
+.exit-button {
+  margin: 15px;
+}
+.exit-button {
+  background: transparent;
+  height: 1.5rem;
+  width: 1.5rem;
+  cursor: pointer;
+  border-radius: 8px;
+}
+.delete-buttons button {
+  margin-bottom: 10px;
+}
+
+.name-form input,
+.focus-container input {
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid black;
+  margin-top: 15px;
+}
+
+#userName {
+  width: 100%;
+}
+
+.name-container {
+  display: block;
+  margin-top: 4rem;
+  margin-bottom: 4rem;
+}
+.greeting {
+  display: none; /*toggle*/
+  font-size: 2.5rem;
+}
+#focusForm,
+.name-form {
+  display: none; /*toggle flex*/
+  flex-direction: column;
+  align-content: center;
+  font-size: 1.5rem;
+}
+
+.focus-header {
+  font-size: 1.5rem;
+}
+#focus {
+  font-size: 2rem;
+}
+.focus-main {
+  display: none; /*toggle flex*/
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
