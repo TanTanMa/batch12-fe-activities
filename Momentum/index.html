@@ -16,11 +16,11 @@
         <section class="ToDoWindow" id="ToDoWindow"
         >
         <!-- <h1 class="title">One step at a time</h1> -->
-            <div class="task-todo-container">
-            <div class="all-task">
-            <h2 class="task-list-title">Task list</h2>
+            <div class="major-task-container">
+            <div class="all-major">
+            <h2 class="major-list-title">Main list</h2>
 
-            <ul class="task-lists" data-lists>
+            <ul class="major-lists" data-lists>
             </ul>
             <form action="" data-new-list-form>
                 <input type="text" class="new list" 
@@ -32,12 +32,12 @@
             </form>
             </div>
 
-            <div class="todo-list" data-list-display-container>
-                <div class="todo-header">
+            <div class="task-list" data-list-display-container>
+                <div class="task-header">
                     <h3 class="list-title" data-list-title></h3>
                     <p class="task-count" data-list-count></p>
                 </div>
-                <div class="todo-body">
+                <div class="task-body">
                     <div class="tasks" data-tasks></div>
                 </div>
                 <div class="new-task-creator">
@@ -64,6 +64,7 @@
                 <p>"<span id="qoute"></span>"</p>
                 <div class="quote-option-container">  <div id="qoute-generate">Generate Quote</div>
                 <div id="qoute-make">Add your own qoute</div>
+                <div id="qoute-set">Set this qoute</div>
                 </div>
             </section>
         </section>
@@ -72,26 +73,28 @@
         <section class="name-focus-container">
             <div class="name-container">
                 <div class="name-form">
-                    <form action="" id="nameForm">
+                    <form action="">
                         <p class="name-question">Hello there! What is your name?</p>
                         <input type="text" id="userName">
-                        <button type="submit" value></button>
+                        <button type="submit" id="nameSubmit" value></button>
+                        <span id=noName></span>
                     </form>
                 </div>
-                <div class="greeting">
-                    <span contenteditable="true"></span> you looking extra fine today!
+                <div class="greeting" >
+                    <span contenteditable="false" id="name"></span>! you looking extra fine today!
                 </div>
             </div>
             <div class="focus-container">
                 <form action="" id="focusForm">
-                    <p class="focus-question">What is our main focus today?</p>
+                    <p class="focus-question">What is our main focus right now?</p>
                     <input type="text" id="focusInput">
-                    <button type="submit" value></button>
+                    <button type="submit" id="focusSubmit" value></button>
                 </form>
                 <div class="focus-main">
                     <div class="focus-header">
                         Today<br></div>
-                        <span id="focus"><b>Coding</b></span>
+                        <span id="focus" contenteditable="false"><b></b></span>
+                        <div id="setFocus">Set new focus</div>
                     
                 </div>
             </div>

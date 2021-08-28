@@ -57,7 +57,9 @@ body {
   margin: 15px;
   cursor: pointer;
 }
-
+#qoute-set {
+  display: none;
+}
 .name-focus-container {
   display: flex;
   flex-direction: column;
@@ -65,6 +67,11 @@ body {
   justify-content: center;
 }
 
+#setFocus {
+  display: none;
+  cursor: pointer;
+  margin: 5px;
+}
 .ToDoWindow {
   position: absolute;
   display: none; /*toggle flex*/
@@ -98,11 +105,11 @@ body {
   background: transparent;
   cursor: pointer;
 }
-.task-todo-container {
+.major-task-container {
   display: flex;
 }
-.all-task,
-.todo-list,
+.all-major,
+.task-list,
 .exit-button {
   margin: 15px;
 }
@@ -128,7 +135,9 @@ body {
 #userName {
   width: 100%;
 }
-
+.active-list {
+  font-size: 1.5rem;
+}
 .name-container {
   display: block;
   margin-top: 4rem;
@@ -142,10 +151,14 @@ body {
 .name-form {
   display: none; /*toggle flex*/
   flex-direction: column;
+  justify-content: center;
   align-content: center;
   font-size: 1.5rem;
 }
-
+#noName {
+  font-size: 1rem;
+  margin: 5px;
+}
 .focus-header {
   font-size: 1.5rem;
 }
