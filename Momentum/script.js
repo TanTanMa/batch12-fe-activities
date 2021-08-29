@@ -209,7 +209,6 @@ function clearElement(element){
 };
 
 
-
 //---------- EVENT LISTENERS ----------
 
 //USER NAME LISTENERS
