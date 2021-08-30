@@ -47,9 +47,12 @@ const exitList = document.getElementById(`exit-button`);
 const ToDoWindow = document.getElementById(`ToDoWindow`);
 const enterList = document.getElementById(`toDoToggle`);
 
+//Reset button
+const resetBtn = document.getElementById(`reset`);
+
 // Local Storage Declarations
-const LOCAL_STORAGE_LIST_KEY = `task.lists`;
-const LOCAL_STORAGE_SELECTED_LIST_ID_KEY = `task.selectedListId`;
+let LOCAL_STORAGE_LIST_KEY = `task.lists`;
+let LOCAL_STORAGE_SELECTED_LIST_ID_KEY = `task.selectedListId`;
 let userData = {
     name: "",
     focus: ""
@@ -86,15 +89,19 @@ function getName(){
     if (nameValue == undefined || nameValue == null || nameValue == ""){
         nameQuestion.innerText = `Don't be shy, type it. Type it out loud..`;
     } else {
-        userName.innerHTML = nameValue;
         userData.name = nameValue;
-        nameForm.style.display = `none`;
-        greeting.style.display = `block`;
         focusForm.style.display = `flex`;
         save();
-        console.log(userData.name);
+        reloadName()
+        userNameInput.value = "";
     }
 };
+//reloads user's name on refresh
+function reloadName(){
+    userName.innerHTML = userData.name;
+    nameForm.style.display = `none`;
+    greeting.style.display = `block`;
+}
 
 //getFocus - get user focus input, hide forms, show focus and qoutes
 function getFocus(){
@@ -102,15 +109,19 @@ function getFocus(){
     if (focusValue == undefined || focusValue == null || focusValue == ""){
         focusQuestion.innerText = `Why are we even here?`
     } else {
-        userFocus.innerHTML = focusValue;
         userData.focus = focusValue;
-        focusForm.style.display = `none`;
-        focusWindow.style.display = `flex`;
-        getQoute();
         save();
-        console.log(userData.focus);
+        reloadFocus();
+        getQoute();
+        userFocusInput.value = "";
     }
 }
+// reloads user's input on refresh
+ function reloadFocus(){
+    userFocus.innerHTML = userData.focus;
+    focusForm.style.display = `none`;
+    focusWindow.style.display = `flex`;
+ }
 
 //QOUTES FUNCTION
 // get and render random Qoutes
@@ -217,8 +228,7 @@ userName.addEventListener(`dblclick`, ()=>{
     greeting.style.display = `none`;
     nameForm.style.display = `flex`;
     nameQuestion.innerText = `Give name, not trust issues.`;
-    focusWindow.style.display = `none`;
-
+    focusWindow.style.display =`none`;
 });
 
 nameSubmit.addEventListener(`click`, function(e){
@@ -363,7 +373,15 @@ newTaskForm.addEventListener('submit', e =>{
 
 
 //----------- RENDERS ON START ----------
-nameForm.style.display = `flex`;
+if (userData.name == undefined || userData.name == null || userData.name==""){
+    nameForm.style.display = `flex`;
+    }else{
+        reloadFocus();
+        reloadName();
+    };
+
+
+
 updateTimeDate();
 setInterval(updateTimeDate, 1000);
 render();

@@ -5,8 +5,10 @@
 body {
   background-image: url(./assets/daniele-colucci-jIrN_E4EZf0-unsplash-min.jpg);
   background-size: cover;
-  height: 95vh;
+  height: 100%;
   width: 100%;
+  position: absolute;
+  background-attachment: fixed;
   background-repeat: no-repeat;
   font-family: "Karla", sans-serif;
 }
@@ -80,11 +82,11 @@ body {
   border-radius: 5px;
   max-height: 90vh;
   overflow-y: auto;
-  color: wheat;
+  color: rgb(48, 48, 48);
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background: cornsilk;
+  background: rgba(255, 252, 238, 0.74);
 }
 .ToDoWindow form {
   display: flex;
@@ -108,10 +110,21 @@ body {
 .major-task-container {
   display: flex;
 }
+
 .all-major,
 .task-list,
 .exit-button {
   margin: 15px;
+}
+.list-title {
+  text-align: center;
+  font-size: 1.5rem;
+}
+.task-count {
+  text-align: center;
+}
+.task {
+  padding-left: 5px;
 }
 .exit-button {
   background: transparent;
@@ -170,4 +183,44 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+}
+
+@media screen and (max-width: 600px) {
+  .main {
+    display: flex;
+    height: 100%;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+  }
+  #time {
+    font-size: calc(130px + (192 - 130) * ((100vw - 600px) / (1600 - 100)));
+  }
+  .greeting {
+    font-size: calc(25px + (40 - 25) * ((100vw - 600px) / (1600 - 100)));
+    text-align: center;
+  }
+  #qoute {
+    font-size: calc(15px + (40 - 25) * ((100vw - 600px) / (1600 - 100)));
+    text-align: center;
+  }
+  .Top-container {
+    width: 100%;
+    font-size: calc(10px + (40 - 10) * ((100vw - 600px) / (1600 - 100)));
+  }
+  .ToDoWindow {
+    width: 60%;
+    right: 5px;
+  }
+  .major-task-container {
+    flex-wrap: wrap;
+  }
+  .exit-button {
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
+  .list-title {
+    text-align: start;
+  }
 }
