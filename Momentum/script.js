@@ -47,12 +47,9 @@ const exitList = document.getElementById(`exit-button`);
 const ToDoWindow = document.getElementById(`ToDoWindow`);
 const enterList = document.getElementById(`toDoToggle`);
 
-//Reset button
-const resetBtn = document.getElementById(`reset`);
-
 // Local Storage Declarations
-let LOCAL_STORAGE_LIST_KEY = `task.lists`;
-let LOCAL_STORAGE_SELECTED_LIST_ID_KEY = `task.selectedListId`;
+const LOCAL_STORAGE_LIST_KEY = `task.lists`;
+const LOCAL_STORAGE_SELECTED_LIST_ID_KEY = `task.selectedListId`;
 let userData = {
     name: "",
     focus: ""
