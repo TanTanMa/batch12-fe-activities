@@ -57,8 +57,13 @@ let userData = {
 let lists = JSON.parse(localStorage.getItem(LOCAL_STORAGE_LIST_KEY)) || [];
 let selectedListId = localStorage.getItem(LOCAL_STORAGE_SELECTED_LIST_ID_KEY);
 
+//array for possible invalid user inputs
+const invalidInputs = [ undefined, null, ""];
+
+
 
 // ------------ FUNCTIONS ------------
+
 
 
 //SAVE AND LOAD FUNCTIONS
@@ -69,21 +74,12 @@ function save(){
     localStorage.setItem("currentData", JSON.stringify(userData));
 };
 
-// load user data **ISSUES**
-function load(){
-    let oldData = localStorage.getItem("currentData");
-    if(!oldData) {
-        saveState()
-        location.reload()
-      };
-    userData = JSON.parse(oldData);
-};
 
 //USER'S INFORMATIONS FUNCTIONS
 // getName - get the user input, show greeting, hide user forms, show focus form
 function getName(){
     let nameValue = userNameInput.value;
-    if (nameValue == undefined || nameValue == null || nameValue == ""){
+    if (invalidInputs.indexOf(nameValue) > -1 ){
         nameQuestion.innerText = `Don't be shy, type it. Type it out loud..`;
     } else {
         userData.name = nameValue;
@@ -103,7 +99,7 @@ function reloadName(){
 //getFocus - get user focus input, hide forms, show focus and qoutes
 function getFocus(){
     let focusValue = userFocusInput.value;
-    if (focusValue == undefined || focusValue == null || focusValue == ""){
+    if (invalidInputs.indexOf(focusValue) > -1 ){
         focusQuestion.innerText = `Why are we even here?`
     } else {
         userData.focus = focusValue;
@@ -166,7 +162,7 @@ function render(){
     renderLists();
 
     const selectedList = lists.find(list => list.id === selectedListId);
-    if (selectedListId == null || selectedList == undefined || selectedListId == ''){
+    if (invalidInputs.indexOf(selectedListId) > -1 ){
         listDisplayContainer.style.display = `none`;
     } else {
         listDisplayContainer.style.display = '';
@@ -347,7 +343,7 @@ deleteListButton.addEventListener(`click`, e =>{
 newListForm.addEventListener('submit', e =>{
     e.preventDefault();
     const listName = newListInput.value;
-    if (listName == null || listName ==="" || listName == undefined) return;
+    if (invalidInputs.indexOf(listName) > -1 ) return;
     const list = createList(listName);
     newListInput.value = null;
     lists.push(list);
@@ -358,7 +354,7 @@ newListForm.addEventListener('submit', e =>{
 newTaskForm.addEventListener('submit', e =>{
     e.preventDefault();
     const taskName = newTaskInput.value;
-    if (taskName == null || taskName == "" || taskName == undefined) {return};
+    if (invalidInputs.indexOf(taskName) > -1 ) {return};
     const task = createTask(taskName);
     newTaskInput.value = null;
     const selectedList = lists.find(list => list.id === selectedListId);
@@ -370,7 +366,7 @@ newTaskForm.addEventListener('submit', e =>{
 
 
 //----------- RENDERS ON START ----------
-if (userData.name == undefined || userData.name == null || userData.name==""){
+if (userData.name == undefined || userData.name == null || userData.name == "" ){
     nameForm.style.display = `flex`;
     }else{
         reloadFocus();
