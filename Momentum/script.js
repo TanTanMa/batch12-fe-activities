@@ -79,7 +79,7 @@ function save(){
 // getName - get the user input, show greeting, hide user forms, show focus form
 function getName(){
     let nameValue = userNameInput.value;
-    if (invalidInputs.indexOf(nameValue) > -1 ){
+    if (invalidInputs.includes(nameValue)){
         nameQuestion.innerText = `Don't be shy, type it. Type it out loud..`;
     } else {
         userData.name = nameValue;
@@ -99,7 +99,7 @@ function reloadName(){
 //getFocus - get user focus input, hide forms, show focus and qoutes
 function getFocus(){
     let focusValue = userFocusInput.value;
-    if (invalidInputs.indexOf(focusValue) > -1 ){
+    if (invalidInputs.includes(focusValue)){
         focusQuestion.innerText = `Why are we even here?`
     } else {
         userData.focus = focusValue;
@@ -162,7 +162,7 @@ function render(){
     renderLists();
 
     const selectedList = lists.find(list => list.id === selectedListId);
-    if (invalidInputs.indexOf(selectedListId) > -1 ){
+    if (invalidInputs.includes(selectedList)){
         listDisplayContainer.style.display = `none`;
     } else {
         listDisplayContainer.style.display = '';
