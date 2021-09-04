@@ -122,6 +122,7 @@ function placeMark(cell, currentClass){
 function saveMove(cell, currentClass){
     let stringID = cell.id.toString()
     undoHistory.push(`${stringID},${currentClass}`);
+    undoButton.style.display = "block";
 }
 
 //moves undo to redo history and vice versa
@@ -147,7 +148,9 @@ function undoMoves(){
     })
     redoButton.style.display = 'block';
     switchPlayer()
-    }else return;
+    }else{
+        undoButton.style.display = "none"
+    };
 }
 
 //adds the latest undid tile, switch player
@@ -163,7 +166,9 @@ function redoMoves(){
             once:false
         });
     switchPlayer()
-    } else return;
+    } else{
+        redoButton.style.display = "none"
+    };
 }
 
 //switches the currentclass every turn
