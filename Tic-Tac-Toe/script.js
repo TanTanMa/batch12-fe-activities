@@ -70,7 +70,6 @@ function startGame(){
     movesHistory = [];
     movesHistory2 = [];
     setBoardHoverClass();
-    ;
 }
 
 function handleClick(e){
@@ -86,10 +85,9 @@ function handleClick(e){
     setBoardHoverClass()
 }
 }
-function renderWinner(){
+function renderScore(){
     Xpoints.innerText = Xp;
     Opoints.innerText = Op;
-    winningMessageTextElement.innerText = `${circleTurn ? "O" : "X"} Wins!`
 }
 
 function endGame(draw){
@@ -98,12 +96,13 @@ function endGame(draw){
     } else {
         if(circleTurn){
             Op += 1;
-            renderWinner();
+            renderScore();
         } else {
             Xp += 1;
-            renderWinner();
+            renderScore();
         }
     }
+    winningMessageTextElement.innerText = `${circleTurn ? "O" : "X"} Wins!`
     winningMessageElement.classList.add(`show`)
 }
 
@@ -112,6 +111,7 @@ function placeMark(cell, currentClass){
     checkId(cell, currentClass);
     if(movesHistory2.length > 0){
         movesHistory2 = [];
+        redoButton.style.display = 'none';
     } else {return};
 };
 
@@ -136,6 +136,7 @@ function undoMoves(){
     document.getElementById(`${cellID}`).addEventListener('click', handleClick, {
         once:true
     })
+    redoButton.style.display = 'block';
     swapTurns();
     setBoardHoverClass();}
     else {
@@ -200,4 +201,9 @@ function isDraw(){
 initializeGame();
 
 restartButton.addEventListener(`click`, initializeGame);
-localRestart.addEventListener(`click`, initializeGame);
+localRestart.addEventListener(`click`,function(){
+    Xp = 0;
+    Op = 0;
+    renderScore();
+    initializeGame();
+});
