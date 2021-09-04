@@ -11,7 +11,8 @@ const XTurn = document.getElementById(`XTurn`);
 const newGameModal = document.getElementById(`newGame`);
 const Xpoints = document.getElementById(`Xpoints`);
 const Opoints = document.getElementById(`Opoints`);
-
+const localRestart = document.getElementById(`localRestart`);
+const exitModal = document.getElementById(`exitModal`);
 const x_class = "x"
 const circle_class = "circle"
 const winning_combinations = [
@@ -49,6 +50,9 @@ function initializeGame(){
         circleTurn = false;
         startGame();
     })
+    exitModal.addEventListener(`click`, function(){
+        newGameModal.style.display=`none`
+    });
     winningMessageElement.classList.remove(`show`)
 }
 
@@ -160,7 +164,6 @@ function redoMoves(){
     } else {
         return;
     }
-    // console.log(internalBoard, movesHistory, movesHistory2)
 }
 
 function swapTurns(){
@@ -191,11 +194,10 @@ function isDraw(){
     })
 }
 
-// console.table(internalBoard);
-
 
 //ON START
-// startGame()
+
 initializeGame();
 
 restartButton.addEventListener(`click`, initializeGame);
+localRestart.addEventListener(`click`, initializeGame);
