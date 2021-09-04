@@ -9,6 +9,20 @@
     <script src="./script.js" defer></script>
 </head>
 <body>
+    <div class="newGame" id="newGame">
+        <div class="newGame_content">
+        <p>Select Turn</p>
+        <button id="OTurn">O</button>
+        <button id="XTurn">X</button>
+        </div>
+    </div>
+    <div class="title">
+        <h1>Tic Tac Toe</h1>
+        <div class="points">
+            <div><span id="Xpoints"></span> Player X : O Player <span id="Opoints"></span></div>
+        </div>
+    </div>
+
     <div class="board" id="board">
     <div class="cell" id="00" data-cell></div>
     <div class="cell" id="01" data-cell></div>
@@ -20,8 +34,11 @@
     <div class="cell" id="21" data-cell></div>
     <div class="cell" id="22" data-cell></div>
     </div>
+    <div class="controls">
     <button id="undo">undo</button>
+    <!-- <button restart-game>Restart</button> -->
     <button id="redo">redo</button>
+    </div>
     <div class="winning-message" id="winningMessage">
         <div data-winning-message-text></div>
         <button id="restartButton">Restart</button>

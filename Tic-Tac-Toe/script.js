@@ -3,10 +3,14 @@ const cellElements = document.querySelectorAll('[data-cell]');
 const board = document.getElementById(`board`)
 const winningMessageElement =document.getElementById(`winningMessage`)
 const winningMessageTextElement = document.querySelector(`[data-winning-message-text]`)
-const individualCells = Array.from(cellElements);
 const restartButton = document.getElementById(`restartButton`)
 const undoButton = document.getElementById(`undo`);
 const redoButton = document.getElementById(`redo`);
+const OTurn = document.getElementById(`OTurn`);
+const XTurn = document.getElementById(`XTurn`);
+const newGameModal = document.getElementById(`newGame`);
+const Xpoints = document.getElementById(`Xpoints`);
+const Opoints = document.getElementById(`Opoints`);
 
 const x_class = "x"
 const circle_class = "circle"
@@ -21,14 +25,11 @@ const winning_combinations = [
     [2, 4, 6]
 ]
 
-let internalBoard=[
-    [null,null,null],
-    [null,null,null],
-    [null,null,null],
-];
+let Xp = 0;
+let Op = 0;
 let movesHistory = []
 let movesHistory2 = []
-let circleTurn
+// let circleTurn
 
 redoButton.addEventListener(`click`, function(){
     redoMoves();
@@ -38,9 +39,22 @@ undoButton.addEventListener(`click`, function(){
     undoMoves()
 })
 //FUNCTIONS
+function initializeGame(){
+    newGameModal.style.display=`block`;
+    OTurn.addEventListener(`click`, function(){
+        circleTurn = true;
+        startGame();
+    })
+    XTurn.addEventListener(`click`, function(){
+        circleTurn = false;
+        startGame();
+    })
+    winningMessageElement.classList.remove(`show`)
+}
+
 
 function startGame(){
-    circleTurn = false
+    newGameModal.style.display=`none`
     cellElements.forEach(cell =>{
         cell.classList.remove(x_class);
         cell.classList.remove(circle_class);
@@ -52,7 +66,7 @@ function startGame(){
     movesHistory = [];
     movesHistory2 = [];
     setBoardHoverClass();
-    winningMessageElement.classList.remove(`show`);
+    ;
 }
 
 function handleClick(e){
@@ -68,13 +82,23 @@ function handleClick(e){
     setBoardHoverClass()
 }
 }
-
+function renderWinner(){
+    Xpoints.innerText = Xp;
+    Opoints.innerText = Op;
+    winningMessageTextElement.innerText = `${circleTurn ? "O" : "X"} Wins!`
+}
 
 function endGame(draw){
     if (draw){
         winningMessageTextElement.innerText = `Draw!`
     } else {
-        winningMessageTextElement.innerText = `${circleTurn ? "O" : "X"} Wins!`
+        if(circleTurn){
+            Op += 1;
+            renderWinner();
+        } else {
+            Xp += 1;
+            renderWinner();
+        }
     }
     winningMessageElement.classList.add(`show`)
 }
@@ -82,44 +106,45 @@ function endGame(draw){
 function placeMark(cell, currentClass){
     cell.classList.add(currentClass);
     checkId(cell, currentClass);
-}
+    if(movesHistory2.length > 0){
+        movesHistory2 = [];
+    } else {return};
+};
 
 function checkId(cell, currentClass){
     const id = cell.id;
     let stringID = id.toString()
-    let mainArray= stringID.charAt(0);
-    let subArray = stringID.charAt(1);
-    internalBoard[mainArray][subArray] = currentClass;
     movesHistory.push(`${stringID},${currentClass}`);
-    console.log(mainArray, subArray, internalBoard, movesHistory);
+    // console.log(mainArray, subArray, internalBoard, movesHistory);
 }
 
 function undoMoves(){
+    if(movesHistory.length > 0){
     let previousMove = movesHistory.pop();
     movesHistory2.push(previousMove);
     let cellID = previousMove.slice(0,2)
     let PMClass = previousMove.slice(3)
-    let mainArray= cellID.charAt(0);
-    let subArray = cellID.charAt(1);
     if (PMClass == "x"){
         document.getElementById(`${cellID}`).classList.remove(x_class);
     } else {
         document.getElementById(`${cellID}`).classList.remove(circle_class)
     }
-    internalBoard[mainArray][subArray] = null;
     document.getElementById(`${cellID}`).addEventListener('click', handleClick, {
         once:true
     })
     swapTurns();
-    setBoardHoverClass();
+    setBoardHoverClass();}
+    else {
+        return;
+    }
 }
+
 function redoMoves(){
+    if (movesHistory2.length > 0){
     previousMove = movesHistory2.pop();
     movesHistory.push(previousMove);
     let cellID = previousMove.slice(0,2)
     let PMClass = previousMove.slice(3)
-    let mainArray= cellID.charAt(0);
-    let subArray = cellID.charAt(1);
     if (document.getElementById(`${cellID}`).classList.contains(x_class || circle_class)){movesHistory.pop();
     } else {
         if (PMClass == "x"){
@@ -127,13 +152,15 @@ function redoMoves(){
         } else {
             document.getElementById(`${cellID}`).classList.add(circle_class)
         }
-        internalBoard[mainArray][subArray] = PMClass;
         document.getElementById(`${cellID}`).addEventListener('click', handleClick, {
             once:false
     })};
     swapTurns();
     setBoardHoverClass();
-    console.log(internalBoard, movesHistory, movesHistory2)
+    } else {
+        return;
+    }
+    // console.log(internalBoard, movesHistory, movesHistory2)
 }
 
 function swapTurns(){
@@ -168,6 +195,7 @@ function isDraw(){
 
 
 //ON START
-startGame()
+// startGame()
+initializeGame();
 
-restartButton.addEventListener(`click`, startGame);
+restartButton.addEventListener(`click`, initializeGame);
