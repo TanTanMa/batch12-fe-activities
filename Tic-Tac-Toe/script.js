@@ -30,7 +30,8 @@ let Xp = 0;
 let Op = 0;
 let movesHistory = []
 let movesHistory2 = []
-// let circleTurn
+let cellID;
+let PMClass;
 
 redoButton.addEventListener(`click`, function(){
     redoMoves();
@@ -81,10 +82,10 @@ function handleClick(e){
     } else if (isDraw()){
         endGame(true)
     } else {
-    swapTurns()
-    setBoardHoverClass()
+    switchPlayer()
+    }
 }
-}
+
 function renderScore(){
     Xpoints.innerText = Xp;
     Opoints.innerText = Op;
@@ -119,15 +120,18 @@ function checkId(cell, currentClass){
     const id = cell.id;
     let stringID = id.toString()
     movesHistory.push(`${stringID},${currentClass}`);
-    // console.log(mainArray, subArray, internalBoard, movesHistory);
+}
+function movingHistory(arr1, arr2){
+    let previousMove = arr1.pop();
+    arr2.push(previousMove);
+    cellID = previousMove.slice(0,2)
+    PMClass = previousMove.slice(3)
+    return cellID, PMClass;
 }
 
 function undoMoves(){
     if(movesHistory.length > 0){
-    let previousMove = movesHistory.pop();
-    movesHistory2.push(previousMove);
-    let cellID = previousMove.slice(0,2)
-    let PMClass = previousMove.slice(3)
+    movingHistory(movesHistory, movesHistory2);
     if (PMClass == "x"){
         document.getElementById(`${cellID}`).classList.remove(x_class);
     } else {
@@ -137,21 +141,13 @@ function undoMoves(){
         once:true
     })
     redoButton.style.display = 'block';
-    swapTurns();
-    setBoardHoverClass();}
-    else {
-        return;
-    }
+    switchPlayer()
+    }else {return;}
 }
 
 function redoMoves(){
     if (movesHistory2.length > 0){
-    previousMove = movesHistory2.pop();
-    movesHistory.push(previousMove);
-    let cellID = previousMove.slice(0,2)
-    let PMClass = previousMove.slice(3)
-    if (document.getElementById(`${cellID}`).classList.contains(x_class || circle_class)){movesHistory.pop();
-    } else {
+        movingHistory(movesHistory2, movesHistory);
         if (PMClass == "x"){
             document.getElementById(`${cellID}`).classList.add(x_class);
         } else {
@@ -159,9 +155,8 @@ function redoMoves(){
         }
         document.getElementById(`${cellID}`).addEventListener('click', handleClick, {
             once:false
-    })};
-    swapTurns();
-    setBoardHoverClass();
+        });
+    switchPlayer()
     } else {
         return;
     }
@@ -195,6 +190,10 @@ function isDraw(){
     })
 }
 
+function switchPlayer(){
+    swapTurns();
+    setBoardHoverClass();
+}
 
 //ON START
 
