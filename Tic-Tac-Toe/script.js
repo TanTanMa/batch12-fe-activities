@@ -6,7 +6,7 @@ const winningMessageTextElement = document.querySelector(`[data-winning-message-
 const individualCells = Array.from(cellElements);
 const restartButton = document.getElementById(`restartButton`)
 const undoButton = document.getElementById(`undo`);
-
+const redoButton = document.getElementById(`redo`);
 
 const x_class = "x"
 const circle_class = "circle"
@@ -22,15 +22,17 @@ const winning_combinations = [
 ]
 
 let internalBoard=[
-    [],
-    [],
-    [],
+    [null,null,null],
+    [null,null,null],
+    [null,null,null],
 ];
 let movesHistory = []
 let movesHistory2 = []
 let circleTurn
 
-
+redoButton.addEventListener(`click`, function(){
+    redoMoves();
+})
 
 undoButton.addEventListener(`click`, function(){
     undoMoves()
@@ -48,6 +50,7 @@ function startGame(){
         })
     })
     movesHistory = [];
+    movesHistory2 = [];
     setBoardHoverClass();
     winningMessageElement.classList.remove(`show`);
 }
@@ -91,19 +94,13 @@ function checkId(cell, currentClass){
     console.log(mainArray, subArray, internalBoard, movesHistory);
 }
 
-function undoMoves(cell){
+function undoMoves(){
     let previousMove = movesHistory.pop();
     movesHistory2.push(previousMove);
-    // const id = cell.id;
-    // let stringID = id.toString()
     let cellID = previousMove.slice(0,2)
     let PMClass = previousMove.slice(3)
-    // let previousMoveNobox = previousMove.slice(3,6)
     let mainArray= cellID.charAt(0);
     let subArray = cellID.charAt(1);
-    // console.log(previousMoveNobox);
-    // let checkClass = internalBoard[mainArray][subArray];
-    console.log(mainArray, subArray);
     if (PMClass == "x"){
         document.getElementById(`${cellID}`).classList.remove(x_class);
     } else {
@@ -113,8 +110,30 @@ function undoMoves(cell){
     document.getElementById(`${cellID}`).addEventListener('click', handleClick, {
         once:true
     })
-    console.log(internalBoard, movesHistory2, movesHistory);
-
+    swapTurns();
+    setBoardHoverClass();
+}
+function redoMoves(){
+    previousMove = movesHistory2.pop();
+    movesHistory.push(previousMove);
+    let cellID = previousMove.slice(0,2)
+    let PMClass = previousMove.slice(3)
+    let mainArray= cellID.charAt(0);
+    let subArray = cellID.charAt(1);
+    if (document.getElementById(`${cellID}`).classList.contains(x_class || circle_class)){movesHistory.pop();
+    } else {
+        if (PMClass == "x"){
+            document.getElementById(`${cellID}`).classList.add(x_class);
+        } else {
+            document.getElementById(`${cellID}`).classList.add(circle_class)
+        }
+        internalBoard[mainArray][subArray] = PMClass;
+        document.getElementById(`${cellID}`).addEventListener('click', handleClick, {
+            once:false
+    })};
+    swapTurns();
+    setBoardHoverClass();
+    console.log(internalBoard, movesHistory, movesHistory2)
 }
 
 function swapTurns(){
