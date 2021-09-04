@@ -7,6 +7,11 @@
 body {
   margin: 0;
   font-family: "chalk", sans-serif;
+  background-image: url(./assets/chalkboarbg.jpg);
+  background-attachment: fixed;
+  background-position: fixed;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 :root {
   --cell-size: 100px;
@@ -63,6 +68,31 @@ h2 {
   max-height: 10rem;
   max-width: 10rem;
 }
+.title {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 3rem;
+  color: white;
+}
+h1 {
+  font-size: 3rem;
+  margin-bottom: 5px;
+}
+h3 {
+  margin: 0;
+}
+#Xpoints,
+#Opoints {
+  font-size: 2rem;
+}
+#Xpoints {
+  color: rgb(11, 11, 80);
+}
+#Opoints {
+  color: maroon;
+}
 .board {
   /* width: 100vw;
   height: 100vh; */
@@ -95,7 +125,7 @@ h2 {
 .cell {
   width: var(--cell-size);
   height: var(--cell-size);
-  border: 1px solid black;
+  border: 3px solid rgb(255, 255, 255);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -104,10 +134,12 @@ h2 {
 }
 
 .cell.circle::before,
-.cell.circle::after,
+.cell.circle::after {
+  background-color: maroon;
+}
 .cell.x::before,
 .cell.x::after {
-  background-color: black;
+  background-color: rgb(11, 11, 80);
 }
 
 .cell.x,
@@ -134,10 +166,12 @@ h2 {
   border-bottom: none;
 }
 .board.x .cell:not(.x):not(.circle):hover::before,
-.board.x .cell:not(.x):not(.circle):hover::after,
+.board.x .cell:not(.x):not(.circle):hover::after {
+  background-color: lightblue;
+}
 .board.circle .cell:not(.x):not(.circle):hover::before,
 .board.circle .cell:not(.x):not(.circle):hover::after {
-  background-color: lightblue;
+  background-color: orchid;
 }
 
 .cell.x::before,
