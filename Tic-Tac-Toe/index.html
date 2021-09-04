@@ -1,48 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width,initial-scale-1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie-edge">
-    <link rel="stylesheet" href="styles.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale-1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie-edge" />
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="icon" href="./assets/hash-straight-bold.png" type="image/png">
     <title>Tic Tac Toe - Tan</title>
     <script src="./script.js" defer></script>
-</head>
-<body>
+  </head>
+  <body>
     <div class="newGame" id="newGame">
-        <div class="newGame_content">
-        <p>Select Turn</p>
-        <button id="OTurn">O</button>
-        <button id="XTurn">X</button>
+      <div class="newGame_content">
+        <img src="./assets/x-square-bold.png" class="exit" id="exitModal">
+        <H2>Select Turn</H2>
+        <div class="chooseTurn">
+          <img src="./assets/circle-bold.png" class="turns" id="OTurn">
+        <img src="./assets/x-bold (1).png" class="turns" id="XTurn">
         </div>
+      </div>
     </div>
     <div class="title">
-        <h1>Tic Tac Toe</h1>
-        <div class="points">
-            <div><span id="Xpoints"></span> Player X : O Player <span id="Opoints"></span></div>
+      <h1>Tic Tac Toe</h1>
+      <div class="points">
+        <div>
+          <b><span id="Xpoints"></span></b> Player X : O Player
+          <b><span id="Opoints"></span></b>
         </div>
+      </div>
     </div>
 
     <div class="board" id="board">
-    <div class="cell" id="00" data-cell></div>
-    <div class="cell" id="01" data-cell></div>
-    <div class="cell" id="02" data-cell></div>
-    <div class="cell" id="10" data-cell></div>
-    <div class="cell" id="11" data-cell></div>
-    <div class="cell" id="12" data-cell></div>
-    <div class="cell" id="20" data-cell></div>
-    <div class="cell" id="21" data-cell></div>
-    <div class="cell" id="22" data-cell></div>
+      <div class="cell" id="00" data-cell></div>
+      <div class="cell" id="01" data-cell></div>
+      <div class="cell" id="02" data-cell></div>
+      <div class="cell" id="10" data-cell></div>
+      <div class="cell" id="11" data-cell></div>
+      <div class="cell" id="12" data-cell></div>
+      <div class="cell" id="20" data-cell></div>
+      <div class="cell" id="21" data-cell></div>
+      <div class="cell" id="22" data-cell></div>
     </div>
     <div class="controls">
-    <button id="undo">undo</button>
-    <!-- <button restart-game>Restart</button> -->
-    <button id="redo">redo</button>
+      <img src="./assets/clock-counter-clockwise-bold (1).svg" class="optionsbtns" id="undo">
+      <img src="./assets/arrows-clockwise-bold.svg" class="optionsbtns" id="localRestart">
+      <img src="./assets/clock-clockwise-bold.svg" class="optionsbtns" id="redo">
     </div>
     <div class="winning-message" id="winningMessage">
-        <div data-winning-message-text></div>
-        <button id="restartButton">Restart</button>
- 
+      <div data-winning-message-text></div>
+      <button id="restartButton">Restart</button>
     </div>
-</body>
+  </body>
 </html>
