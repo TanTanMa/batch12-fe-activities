@@ -28,19 +28,15 @@ const winning_combinations = [
 
 let Xp = 0;
 let Op = 0;
-let movesHistory = []
-let movesHistory2 = []
+let undoHistory = []
+let redoHistory = []
 let cellID;
 let PMClass;
 
-redoButton.addEventListener(`click`, function(){
-    redoMoves();
-})
 
-undoButton.addEventListener(`click`, function(){
-    undoMoves()
-})
 //FUNCTIONS
+
+//Open new game modal, player chose if X or O;
 function initializeGame(){
     newGameModal.style.display=`block`;
     OTurn.addEventListener(`click`, function(){
@@ -57,7 +53,7 @@ function initializeGame(){
     winningMessageElement.classList.remove(`show`)
 }
 
-
+//Hide Modal, clears the board, reset all previous history moves
 function startGame(){
     newGameModal.style.display=`none`
     cellElements.forEach(cell =>{
@@ -68,11 +64,12 @@ function startGame(){
             once:true
         })
     })
-    movesHistory = [];
-    movesHistory2 = [];
+    undoHistory = [];
+    redoHistory = [];
     setBoardHoverClass();
 }
 
+//check if X or O turn and winning combination, switch turn
 function handleClick(e){
     const cell = e.target
     const currentClass = circleTurn ? circle_class : x_class
@@ -86,11 +83,13 @@ function handleClick(e){
     }
 }
 
+//updates Score board
 function renderScore(){
     Xpoints.innerText = Xp;
     Opoints.innerText = Op;
 }
 
+//Check if draw, else increment point to the winning letter, show win modal
 function endGame(draw){
     if (draw){
         winningMessageTextElement.innerText = `Draw!`
@@ -102,25 +101,30 @@ function endGame(draw){
             Xp += 1;
             renderScore();
         }
+        winningMessageTextElement.innerText = `${circleTurn ? "O" : "X"} Wins!`
     }
-    winningMessageTextElement.innerText = `${circleTurn ? "O" : "X"} Wins!`
+
     winningMessageElement.classList.add(`show`)
 }
 
+//places X or O on tile depending on the current player
+//if previously undid a move, clears and hide redo to prevent touch move
 function placeMark(cell, currentClass){
     cell.classList.add(currentClass);
-    checkId(cell, currentClass);
-    if(movesHistory2.length > 0){
-        movesHistory2 = [];
+    saveMove(cell, currentClass);
+    if(redoHistory.length > 0){
+        redoHistory = [];
         redoButton.style.display = 'none';
-    } else {return};
+    } else return;
 };
 
-function checkId(cell, currentClass){
-    const id = cell.id;
-    let stringID = id.toString()
-    movesHistory.push(`${stringID},${currentClass}`);
+//Save new moves to undohistory
+function saveMove(cell, currentClass){
+    let stringID = cell.id.toString()
+    undoHistory.push(`${stringID},${currentClass}`);
 }
+
+//moves undo to redo history and vice versa
 function movingHistory(arr1, arr2){
     let previousMove = arr1.pop();
     arr2.push(previousMove);
@@ -129,9 +133,10 @@ function movingHistory(arr1, arr2){
     return cellID, PMClass;
 }
 
+//removes the latest marked tile, show redo button, switch player 
 function undoMoves(){
-    if(movesHistory.length > 0){
-    movingHistory(movesHistory, movesHistory2);
+    if(undoHistory.length > 0){
+    movingHistory(undoHistory, redoHistory);
     if (PMClass == "x"){
         document.getElementById(`${cellID}`).classList.remove(x_class);
     } else {
@@ -142,12 +147,13 @@ function undoMoves(){
     })
     redoButton.style.display = 'block';
     switchPlayer()
-    }else {return;}
+    }else return;
 }
 
+//adds the latest undid tile, switch player
 function redoMoves(){
-    if (movesHistory2.length > 0){
-        movingHistory(movesHistory2, movesHistory);
+    if (redoHistory.length > 0){
+        movingHistory(redoHistory, undoHistory);
         if (PMClass == "x"){
             document.getElementById(`${cellID}`).classList.add(x_class);
         } else {
@@ -157,15 +163,16 @@ function redoMoves(){
             once:false
         });
     switchPlayer()
-    } else {
-        return;
-    }
+    } else return;
 }
 
+//switches the currentclass every turn
+//if circleTurn = True, O turns : false = X turn 
 function swapTurns(){
     circleTurn = !circleTurn
 }
 
+//set the hover tiles depending on the current player
 function setBoardHoverClass(){
     board.classList.remove(x_class)
     board.classList.remove(circle_class)
@@ -176,6 +183,7 @@ function setBoardHoverClass(){
     }
 }
 
+//counter check the winning combination arrays with the board arrays, via currentClass
 function checkWin(currentClass){
     return winning_combinations.some(combination =>{
         return combination.every(index => {
@@ -184,6 +192,7 @@ function checkWin(currentClass){
     })
 }
 
+//check if if all tiles are filled and and no winning combination is found 
 function isDraw(){
     return [...cellElements].every(cell =>{
        return cell.classList.contains(x_class) || cell.classList.contains(circle_class)
@@ -195,14 +204,24 @@ function switchPlayer(){
     setBoardHoverClass();
 }
 
-//ON START
+//ADD EVENTLISTENER
+redoButton.addEventListener(`click`, function(){
+    redoMoves();
+})
 
-initializeGame();
-
+undoButton.addEventListener(`click`, function(){
+    undoMoves()
+})
 restartButton.addEventListener(`click`, initializeGame);
+
 localRestart.addEventListener(`click`,function(){
     Xp = 0;
     Op = 0;
     renderScore();
     initializeGame();
 });
+
+//ON START
+initializeGame();
+
+
