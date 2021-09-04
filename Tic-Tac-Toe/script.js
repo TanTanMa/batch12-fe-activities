@@ -6,16 +6,7 @@ const winningMessageTextElement = document.querySelector(`[data-winning-message-
 const individualCells = Array.from(cellElements);
 const restartButton = document.getElementById(`restartButton`)
 const undoButton = document.getElementById(`undo`);
-//GridBoard Declarations
-// const a1 = document.getElementById(`a1`);
-// const a2 = document.getElementById(`a2`);
-// const a3 = document.getElementById(`a3`);
-// const b1 = document.getElementById(`b1`);
-// const b2 = document.getElementById(`b2`);
-// const b3 = document.getElementById(`b3`);
-// const c1 = document.getElementById(`c1`);
-// const c2 = document.getElementById(`c2`);
-// const c3 = document.getElementById(`c3`);
+
 
 const x_class = "x"
 const circle_class = "circle"
@@ -31,22 +22,21 @@ const winning_combinations = [
 ]
 
 let internalBoard=[
-    [null,null,null],
-    [null,null,null],
-    [null,null,null],
+    [],
+    [],
+    [],
 ];
-
+let movesHistory = []
+let movesHistory2 = []
 let circleTurn
 
 
 
 undoButton.addEventListener(`click`, function(){
-    console.log(`undo here`);
+    undoMoves()
 })
 //FUNCTIONS
-function undoMoves(){
 
-}
 function startGame(){
     circleTurn = false
     cellElements.forEach(cell =>{
@@ -57,6 +47,7 @@ function startGame(){
             once:true
         })
     })
+    movesHistory = [];
     setBoardHoverClass();
     winningMessageElement.classList.remove(`show`);
 }
@@ -96,8 +87,34 @@ function checkId(cell, currentClass){
     let mainArray= stringID.charAt(0);
     let subArray = stringID.charAt(1);
     internalBoard[mainArray][subArray] = currentClass;
+    movesHistory.push(`${stringID},${currentClass}`);
+    console.log(mainArray, subArray, internalBoard, movesHistory);
+}
+
+function undoMoves(cell){
+    let previousMove = movesHistory.pop();
+    movesHistory2.push(previousMove);
+    // const id = cell.id;
+    // let stringID = id.toString()
+    let cellID = previousMove.slice(0,2)
+    let PMClass = previousMove.slice(3)
+    // let previousMoveNobox = previousMove.slice(3,6)
+    let mainArray= cellID.charAt(0);
+    let subArray = cellID.charAt(1);
+    // console.log(previousMoveNobox);
+    // let checkClass = internalBoard[mainArray][subArray];
     console.log(mainArray, subArray);
-    console.log(internalBoard);
+    if (PMClass == "x"){
+        document.getElementById(`${cellID}`).classList.remove(x_class);
+    } else {
+        document.getElementById(`${cellID}`).classList.remove(circle_class)
+    }
+    internalBoard[mainArray][subArray] = null;
+    document.getElementById(`${cellID}`).addEventListener('click', handleClick, {
+        once:true
+    })
+    console.log(internalBoard, movesHistory2, movesHistory);
+
 }
 
 function swapTurns(){
