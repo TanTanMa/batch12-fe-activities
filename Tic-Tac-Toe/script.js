@@ -13,6 +13,7 @@ const Xpoints = document.getElementById(`Xpoints`);
 const Opoints = document.getElementById(`Opoints`);
 const localRestart = document.getElementById(`localRestart`);
 const exitModal = document.getElementById(`exitModal`);
+const modalText = document.getElementById(`modalMessage`);
 const x_class = "x"
 const circle_class = "circle"
 const winning_combinations = [
@@ -25,7 +26,7 @@ const winning_combinations = [
     [0, 4, 8],
     [2, 4, 6]
 ]
-
+let hardReset = false;
 let Xp = 0;
 let Op = 0;
 let undoHistory = []
@@ -38,14 +39,15 @@ let PMClass;
 
 //Open new game modal, player chose if X or O;
 function initializeGame(){
+    gameReset(hardReset);
     newGameModal.style.display=`block`;
     OTurn.addEventListener(`click`, function(){
         circleTurn = true;
-        startGame();
+        renderGame();
     })
     XTurn.addEventListener(`click`, function(){
         circleTurn = false;
-        startGame();
+        renderGame();
     })
     exitModal.addEventListener(`click`, function(){
         newGameModal.style.display=`none`
@@ -69,6 +71,15 @@ function startGame(){
     setBoardHoverClass();
 }
 
+//change modal message on continue game and if new game
+function gameReset(hardReset){
+    if (hardReset){
+        modalText.innerText = "New game?";
+    } else {
+        modalText.innerText = "Select Turn";
+    }
+};
+
 //check if X or O turn and winning combination, switch turn
 function handleClick(e){
     const cell = e.target
@@ -83,8 +94,12 @@ function handleClick(e){
     }
 }
 
-//updates Score board
-function renderScore(){
+//updates Score board if reset, clears score too
+function renderScore(hardReset){
+    if (hardReset){
+        Xp = 0;
+        Op = 0;
+    };
     Xpoints.innerText = Xp;
     Opoints.innerText = Op;
 }
@@ -94,16 +109,10 @@ function endGame(draw){
     if (draw){
         winningMessageTextElement.innerText = `Draw!`
     } else {
-        if(circleTurn){
-            Op += 1;
-            renderScore();
-        } else {
-            Xp += 1;
-            renderScore();
-        }
+        circleTurn ? Op += 1 : Xp += 1;
         winningMessageTextElement.innerText = `${circleTurn ? "O" : "X"} Wins!`
     }
-
+    renderScore();
     winningMessageElement.classList.add(`show`)
 }
 
@@ -115,10 +124,10 @@ function placeMark(cell, currentClass){
     if(redoHistory.length > 0){
         redoHistory = [];
         redoButton.style.display = 'none';
-    } else return;
+    };
 };
 
-//Save new moves to undohistory
+//Save new moves to undo history
 function saveMove(cell, currentClass){
     let stringID = cell.id.toString()
     undoHistory.push(`${stringID},${currentClass}`);
@@ -137,17 +146,17 @@ function movingHistory(arr1, arr2){
 //removes the latest marked tile, show redo button, switch player 
 function undoMoves(){
     if(undoHistory.length > 0){
-    movingHistory(undoHistory, redoHistory);
-    if (PMClass == "x"){
-        document.getElementById(`${cellID}`).classList.remove(x_class);
-    } else {
-        document.getElementById(`${cellID}`).classList.remove(circle_class)
-    }
-    document.getElementById(`${cellID}`).addEventListener('click', handleClick, {
-        once:true
-    })
-    redoButton.style.display = 'block';
-    switchPlayer()
+        movingHistory(undoHistory, redoHistory);
+        if (PMClass == "x"){
+            document.getElementById(`${cellID}`).classList.remove(x_class);
+        } else {
+            document.getElementById(`${cellID}`).classList.remove(circle_class)
+        };
+        document.getElementById(`${cellID}`).addEventListener('click', handleClick, {
+            once:true
+        })
+        redoButton.style.display = 'block';
+        switchPlayer()
     }else{
         undoButton.style.display = "none"
     };
@@ -165,8 +174,8 @@ function redoMoves(){
         document.getElementById(`${cellID}`).addEventListener('click', handleClick, {
             once:false
         });
-    switchPlayer()
-    } else{
+        switchPlayer()
+    }else{
         redoButton.style.display = "none"
     };
 }
@@ -175,17 +184,17 @@ function redoMoves(){
 //if circleTurn = True, O turns : false = X turn 
 function swapTurns(){
     circleTurn = !circleTurn
-}
+};
 
 //set the hover tiles depending on the current player
 function setBoardHoverClass(){
-    board.classList.remove(x_class)
-    board.classList.remove(circle_class)
+    board.classList.remove(x_class);
+    board.classList.remove(circle_class);
     if (circleTurn){
         board.classList.add(circle_class)
-    } else {
+    }else{
         board.classList.add(x_class)
-    }
+    };
 }
 
 //counter check the winning combination arrays with the board arrays, via currentClass
@@ -203,6 +212,10 @@ function isDraw(){
        return cell.classList.contains(x_class) || cell.classList.contains(circle_class)
     })
 }
+function renderGame(){
+    startGame();
+    renderScore(hardReset);
+}
 
 function switchPlayer(){
     swapTurns();
@@ -217,11 +230,13 @@ redoButton.addEventListener(`click`, function(){
 undoButton.addEventListener(`click`, function(){
     undoMoves()
 })
-restartButton.addEventListener(`click`, initializeGame);
+restartButton.addEventListener(`click`, function(){
+    hardReset = false;
+    initializeGame();
+});
 
 localRestart.addEventListener(`click`,function(){
-    Xp = 0;
-    Op = 0;
+    hardReset = true;
     renderScore();
     initializeGame();
 });
