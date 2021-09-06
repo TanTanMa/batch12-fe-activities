@@ -33,23 +33,23 @@
     </div>
 
     <div class="board" id="board">
-      <div class="cell" id="00" data-cell></div>
-      <div class="cell" id="01" data-cell></div>
-      <div class="cell" id="02" data-cell></div>
-      <div class="cell" id="10" data-cell></div>
-      <div class="cell" id="11" data-cell></div>
-      <div class="cell" id="12" data-cell></div>
-      <div class="cell" id="20" data-cell></div>
-      <div class="cell" id="21" data-cell></div>
-      <div class="cell" id="22" data-cell></div>
+      <div class="tile" id="00" tile></div>
+      <div class="tile" id="01" tile></div>
+      <div class="tile" id="02" tile></div>
+      <div class="tile" id="10" tile></div>
+      <div class="tile" id="11" tile></div>
+      <div class="tile" id="12" tile></div>
+      <div class="tile" id="20" tile></div>
+      <div class="tile" id="21" tile></div>
+      <div class="tile" id="22" tile></div>
     </div>
     <div class="controls">
       <img src="./assets/clock-counter-clockwise-bold.png" class="optionsbtns" id="undo">
-      <img src="./assets/arrows-clockwise-bold.png" class="optionsbtns" id="localRestart">
+      <img src="./assets/arrows-clockwise-bold.png" class="optionsbtns" id="hardRestart">
       <img src="./assets/clock-clockwise-bold.png" class="optionsbtns" id="redo">
     </div>
-    <div class="winning-message" id="winningMessage">
-      <div data-winning-message-text></div>
+    <div class="winning-message" id="winModal">
+      <div winMessage></div>
       <button id="restartButton">Continue</button>
     </div>
   </body>

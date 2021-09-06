@@ -1,8 +1,8 @@
 //DECLARATIONS
-const cellElements = document.querySelectorAll('[data-cell]');
+const tile = document.querySelectorAll('[tile]');
 const board = document.getElementById(`board`)
-const winningMessageElement =document.getElementById(`winningMessage`)
-const winningMessageTextElement = document.querySelector(`[data-winning-message-text]`)
+const winModal =document.getElementById(`winModal`)
+const winMessage = document.querySelector(`[winMessage]`)
 const restartButton = document.getElementById(`restartButton`)
 const undoButton = document.getElementById(`undo`);
 const redoButton = document.getElementById(`redo`);
@@ -11,7 +11,7 @@ const XTurn = document.getElementById(`XTurn`);
 const newGameModal = document.getElementById(`newGame`);
 const Xpoints = document.getElementById(`Xpoints`);
 const Opoints = document.getElementById(`Opoints`);
-const localRestart = document.getElementById(`localRestart`);
+const hardRestart = document.getElementById(`hardRestart`);
 const exitModal = document.getElementById(`exitModal`);
 const modalText = document.getElementById(`modalMessage`);
 const x_class = "x"
@@ -41,24 +41,13 @@ let PMClass;
 function initializeGame(){
     gameReset(hardReset);
     newGameModal.style.display=`block`;
-    OTurn.addEventListener(`click`, function(){
-        circleTurn = true;
-        renderGame();
-    })
-    XTurn.addEventListener(`click`, function(){
-        circleTurn = false;
-        renderGame();
-    })
-    exitModal.addEventListener(`click`, function(){
-        newGameModal.style.display=`none`
-    });
-    winningMessageElement.classList.remove(`show`)
+    winModal.classList.remove(`show`)
 }
 
 //Hide Modal, clears the board, reset all previous history moves
 function startGame(){
     newGameModal.style.display=`none`
-    cellElements.forEach(cell =>{
+    tile.forEach(cell =>{
         cell.classList.remove(x_class);
         cell.classList.remove(circle_class);
         cell.removeEventListener(`click`, handleClick);
@@ -83,9 +72,9 @@ function gameReset(hardReset){
 //check if X or O turn and winning combination, switch turn
 function handleClick(e){
     const cell = e.target
-    const currentClass = circleTurn ? circle_class : x_class
-    placeMark(cell, currentClass)
-    if (checkWin(currentClass)){
+    const currentTurn = circleTurn ? circle_class : x_class
+    placeMark(cell, currentTurn)
+    if (checkWin(currentTurn)){
         endGame(false)
     } else if (isDraw()){
         endGame(true)
@@ -107,20 +96,20 @@ function renderScore(hardReset){
 //Check if draw, else increment point to the winning letter, show win modal
 function endGame(draw){
     if (draw){
-        winningMessageTextElement.innerText = `Draw!`
+        winMessage.innerText = `Draw!`
     } else {
         circleTurn ? Op += 1 : Xp += 1;
-        winningMessageTextElement.innerText = `${circleTurn ? "O" : "X"} Wins!`
+        winMessage.innerText = `${circleTurn ? "O" : "X"} Wins!`
     }
     renderScore();
-    winningMessageElement.classList.add(`show`)
+    winModal.classList.add(`show`)
 }
 
 //places X or O on tile depending on the current player
 //if previously undid a move, clears and hide redo to prevent touch move
-function placeMark(cell, currentClass){
-    cell.classList.add(currentClass);
-    saveMove(cell, currentClass);
+function placeMark(cell, currentTurn){
+    cell.classList.add(currentTurn);
+    saveMove(cell, currentTurn);
     if(redoHistory.length > 0){
         redoHistory = [];
         redoButton.style.display = 'none';
@@ -128,9 +117,9 @@ function placeMark(cell, currentClass){
 };
 
 //Save new moves to undo history
-function saveMove(cell, currentClass){
+function saveMove(cell, currentTurn){
     let stringID = cell.id.toString()
-    undoHistory.push(`${stringID},${currentClass}`);
+    undoHistory.push(`${stringID},${currentTurn}`);
     undoButton.style.display = "block";
 }
 
@@ -180,7 +169,7 @@ function redoMoves(){
     };
 }
 
-//switches the currentclass every turn
+//switches the currentTurn every turn
 //if circleTurn = True, O turns : false = X turn 
 function swapTurns(){
     circleTurn = !circleTurn
@@ -197,18 +186,18 @@ function setBoardHoverClass(){
     };
 }
 
-//counter check the winning combination arrays with the board arrays, via currentClass
-function checkWin(currentClass){
+//counter check the winning combination arrays with the board arrays, via currentTurn
+function checkWin(currentTurn){
     return winning_combinations.some(combination =>{
         return combination.every(index => {
-            return cellElements[index].classList.contains(currentClass)
+            return tile[index].classList.contains(currentTurn)
         })
     })
 }
 
 //check if if all tiles are filled and and no winning combination is found 
 function isDraw(){
-    return [...cellElements].every(cell =>{
+    return [...tile].every(cell =>{
        return cell.classList.contains(x_class) || cell.classList.contains(circle_class)
     })
 }
@@ -223,6 +212,21 @@ function switchPlayer(){
 }
 
 //ADD EVENTLISTENER
+
+OTurn.addEventListener(`click`, function(){
+    circleTurn = true;
+    renderGame();
+});
+
+XTurn.addEventListener(`click`, function(){
+    circleTurn = false;
+    renderGame();
+});
+
+exitModal.addEventListener(`click`, function(){
+    newGameModal.style.display=`none`
+});
+
 redoButton.addEventListener(`click`, function(){
     redoMoves();
 })
@@ -230,12 +234,13 @@ redoButton.addEventListener(`click`, function(){
 undoButton.addEventListener(`click`, function(){
     undoMoves()
 })
+
 restartButton.addEventListener(`click`, function(){
     hardReset = false;
     initializeGame();
 });
 
-localRestart.addEventListener(`click`,function(){
+hardRestart.addEventListener(`click`,function(){
     hardReset = true;
     renderScore();
     initializeGame();
