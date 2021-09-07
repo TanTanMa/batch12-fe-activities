@@ -63,7 +63,6 @@ function startGame(){
     redoHistory = [];
     openWin.style.display=`none`;
     setBoardHoverClass();
-
 }
 
 //change modal message on continue game and if new game
@@ -227,7 +226,40 @@ function switchPlayer(){
     setBoardHoverClass();
 }
 
+//Make modals draggable
+function dragElement(modal) {
+    let pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+      modal.onmousedown = dragMouseDown;
+
+      //get cursor position at start up, call function when cursor moves (button hold)
+    function dragMouseDown(e) {
+      pos3 = e.clientX;
+      pos4 = e.clientY;
+      modal.onmouseup = closeDragElement;
+      modal.onmousemove = elementDrag;
+    }
+  //calculate cursor posution, then set to modal new position
+    function elementDrag(e) {
+      pos1 = pos3 - e.clientX;
+      pos2 = pos4 - e.clientY;
+      pos3 = e.clientX;
+      pos4 = e.clientY;
+      modal.style.top = (modal.offsetTop - pos2) + "px";
+      modal.style.left = (modal.offsetLeft - pos1) + "px";
+    }
+  
+    function closeDragElement() {
+      // stop moving when mouse button is released
+      modal.onmouseup = null;
+      modal.onmousemove = null;
+    }
+  }
+
+
 //ADD EVENTLISTENER
+redoButton.addEventListener(`click`, redoMoves);
+
+undoButton.addEventListener(`click`, undoMoves);
 
 OTurn.addEventListener(`click`, function(){
     circleTurn = true;
@@ -252,9 +284,6 @@ openWin.addEventListener(`click`, function(){
     winModal.classList.add(`show`);
     openWin.style.display=`none`;
 })
-redoButton.addEventListener(`click`, redoMoves);
-
-undoButton.addEventListener(`click`, undoMoves);
 
 restartButton.addEventListener(`click`, function(){
     hardReset = false;
@@ -269,5 +298,6 @@ hardRestart.addEventListener(`click`,function(){
 
 //ON START
 initializeGame();
-
+dragElement(newGameModal);
+dragElement(winModal);
 
