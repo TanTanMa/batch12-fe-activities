@@ -13,7 +13,9 @@ const Xpoints = document.getElementById(`Xpoints`);
 const Opoints = document.getElementById(`Opoints`);
 const hardRestart = document.getElementById(`hardRestart`);
 const exitModal = document.getElementById(`exitModal`);
+const exitWin = document.getElementById(`exitWinModal`);
 const modalText = document.getElementById(`modalMessage`);
+const openWin = document.getElementById(`openWinModal`);
 const x_class = "x"
 const circle_class = "circle"
 const winning_combinations = [
@@ -55,9 +57,13 @@ function startGame(){
             once:true
         })
     })
+    winMessage.classList.remove("Xwins");
+    winMessage.classList.remove("Owins");
     undoHistory = [];
     redoHistory = [];
+    openWin.style.display=`none`;
     setBoardHoverClass();
+
 }
 
 //change modal message on continue game and if new game
@@ -99,7 +105,15 @@ function endGame(draw){
         winMessage.innerText = `Draw!`
     } else {
         circleTurn ? Op += 1 : Xp += 1;
-        winMessage.innerText = `${circleTurn ? "O" : "X"} Wins!`
+        circleTurn ? winMessage.classList.add("Owins") : winMessage.classList.add("Xwins");
+        winMessage.innerText = `${circleTurn ? "O" : "X"} Wins!`;
+        tile.forEach(cell =>{
+            cell.removeEventListener(`click`, handleClick);
+            board.classList.remove(x_class);
+            board.classList.remove(circle_class);
+        });
+        undoButton.style.display = "none";
+        redoButton.style.display = "none";
     }
     renderScore();
     winModal.classList.add(`show`)
@@ -163,6 +177,7 @@ function redoMoves(){
         document.getElementById(`${cellID}`).addEventListener('click', handleClick, {
             once:false
         });
+        undoButton.style.display = 'block';
         switchPlayer()
     }else{
         redoButton.style.display = "none"
@@ -201,6 +216,7 @@ function isDraw(){
        return cell.classList.contains(x_class) || cell.classList.contains(circle_class)
     })
 }
+
 function renderGame(){
     startGame();
     renderScore(hardReset);
@@ -227,13 +243,18 @@ exitModal.addEventListener(`click`, function(){
     newGameModal.style.display=`none`
 });
 
-redoButton.addEventListener(`click`, function(){
-    redoMoves();
+exitWin.addEventListener(`click`,function(){
+    winModal.classList.remove(`show`);
+    openWin.style.display=`block`;
 })
 
-undoButton.addEventListener(`click`, function(){
-    undoMoves()
+openWin.addEventListener(`click`, function(){
+    winModal.classList.add(`show`);
+    openWin.style.display=`none`;
 })
+redoButton.addEventListener(`click`, redoMoves);
+
+undoButton.addEventListener(`click`, undoMoves);
 
 restartButton.addEventListener(`click`, function(){
     hardReset = false;

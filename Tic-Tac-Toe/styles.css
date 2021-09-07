@@ -2,6 +2,7 @@
 *::after,
 *::before {
   box-sizing: border-box;
+  overflow: hidden;
 }
 
 body {
@@ -59,9 +60,10 @@ h2 {
   display: flex;
   justify-content: center;
 }
+#openWinModal:hover,
 #OTurn:hover,
 #XTurn:hover,
-#exitModal:hover {
+.exit:hover {
   transform: scale(1.2);
 }
 .turns {
@@ -73,10 +75,11 @@ h2 {
   width: 100%;
   flex-direction: column;
   align-items: center;
-  margin-bottom: 3rem;
+  margin-bottom: 1rem;
   color: white;
 }
 h1 {
+  margin-top: 0;
   font-size: 3rem;
   margin-bottom: 5px;
 }
@@ -94,8 +97,6 @@ h3 {
   color: maroon;
 }
 .board {
-  /* width: 100vw;
-  height: 100vh; */
   display: grid;
   justify-content: center;
   align-content: center;
@@ -125,7 +126,7 @@ h3 {
 #undo {
   display: none;
 }
-/* box */
+
 .tile {
   width: var(--tile-size);
   height: var(--tile-size);
@@ -221,38 +222,71 @@ h3 {
 }
 
 .winning-message {
+  background-color: #fefefe;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  text-align: center;
+  margin: 15% auto;
+  padding: 20px;
+  border-radius: 10px;
+  border: 1px solid #888;
+  width: 50%;
+  height: 25%;
+}
+
+.winModalContainer {
   display: none;
   position: fixed;
-  top: 0;
+  z-index: 1;
   left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(0, 0, 0, 0.9);
-  justify-content: center;
-  align-items: center;
-  color: aliceblue;
-  font-size: 5rem;
-  flex-direction: column;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgb(0, 0, 0);
+  background-color: rgba(0, 0, 0, 0.4);
 }
-
-.winning-message button {
-  font-size: 3rem;
-  background-color: antiquewhite;
-  border: 1px solid black;
-  padding: 0.25em 0.5em;
+.playerWin {
+  font-size: 4rem;
+  margin-bottom: 30px;
+}
+#restartButton {
+  font-size: 1rem;
+  text-align: center;
+  align-self: center;
   cursor: pointer;
+  width: 80%;
 }
 
-.winning-message button:hover {
+#restartButton:hover {
   background-color: black;
   border-color: white;
   color: antiquewhite;
+  border-radius: 25px;
 }
 
-.winning-message.show {
+.winModalContainer.show {
   display: flex;
 }
-
+.Xwins {
+  color: rgb(11, 11, 80);
+}
+.Owins {
+  color: maroon;
+}
+#openWinModal {
+  display: none;
+  font-size: 3rem;
+  align-self: center;
+  text-align: center;
+  color: antiquewhite;
+  padding: 15px;
+  width: 100%;
+  cursor: pointer;
+}
 @keyframes rotate-90-cw {
   0% {
     transform: rotate(0);
