@@ -149,11 +149,8 @@ function movingHistory(arr1, arr2){
 function undoMoves(){
     if(undoHistory.length > 0){
         movingHistory(undoHistory, redoHistory);
-        if (PMClass == "x"){
-            document.getElementById(`${cellID}`).classList.remove(x_class);
-        } else {
-            document.getElementById(`${cellID}`).classList.remove(circle_class)
-        };
+        document.getElementById(`${cellID}`).classList.remove(x_class);
+        document.getElementById(`${cellID}`).classList.remove(circle_class)
         document.getElementById(`${cellID}`).addEventListener('click', handleClick, {
             once:true
         })
@@ -168,11 +165,8 @@ function undoMoves(){
 function redoMoves(){
     if (redoHistory.length > 0){
         movingHistory(redoHistory, undoHistory);
-        if (PMClass == "x"){
-            document.getElementById(`${cellID}`).classList.add(x_class);
-        } else {
-            document.getElementById(`${cellID}`).classList.add(circle_class)
-        }
+        PMClass == "x" ? document.getElementById(`${cellID}`).classList.add(x_class) :
+            document.getElementById(`${cellID}`).classList.add(circle_class);
         document.getElementById(`${cellID}`).addEventListener('click', handleClick, {
             once:false
         });
@@ -193,12 +187,8 @@ function swapTurns(){
 function setBoardHoverClass(){
     board.classList.remove(x_class);
     board.classList.remove(circle_class);
-    if (circleTurn){
-        board.classList.add(circle_class)
-    }else{
-        board.classList.add(x_class)
+    circleTurn ? board.classList.add(circle_class) : board.classList.add(x_class);
     };
-}
 
 //counter check the winning combination arrays with the board arrays, via currentTurn
 function checkWin(currentTurn){
