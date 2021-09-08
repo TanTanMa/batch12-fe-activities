@@ -318,3 +318,14 @@ h3 {
   font-family: "chalk";
   src: url("./assets/chalktastic-font/Chalktastic-x1nR.ttf") format("truetype");
 }
+
+@media screen and (max-width: 550px) {
+  h2,
+  .playerWin {
+    font-size: 2rem;
+  }
+}
+.winning-message {
+  width: 60%;
+  align-self: center;
+}
