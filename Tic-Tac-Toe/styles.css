@@ -231,7 +231,7 @@ h3 {
 .board.circle .tile:not(.x):not(.circle):hover::after {
   width: calc(var(--mark-size) * 0.7);
   height: calc(var(--mark-size) * 0.7);
-  background-color: white;
+  background-color: #16483d;
 }
 
 .winning-message {
