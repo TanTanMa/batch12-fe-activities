@@ -25,6 +25,7 @@ const createSetQoute = document.getElementById(`qoute-set`);
 const generateQoute = document.getElementById(`qoute-generate`);
 const qouteContainer = document.getElementById(`qoute-container`);
 const qouteOptions = document.querySelector(`.quote-option-container`);
+const author = document.getElementById(`qouter`);
 
 // Time and Date Declarations
 const time = document.getElementById("time");
@@ -119,11 +120,17 @@ function getFocus(){
 //QOUTES FUNCTION
 // get and render random Qoutes
 function getQoute(){
-    fetch("https://complimentr.com/api")
+    fetch("https://type.fit/api/quotes")
     .then(res =>{
         return res.json()
     })
-    .then(data => setQoute.innerHTML = data.compliment);
+    .then(function thisQoute(data){
+        thisarray = Math.floor(Math.random()*100);
+        qoute = data[thisarray].text;
+        qouter = data[thisarray].author;
+        setQoute.innerHTML = qoute;
+        author.innerHTML = qouter;
+    })
     qouteContainer.style.display = `flex`
 }
 
